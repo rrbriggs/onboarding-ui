@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var request = new XMLHttpRequest();
 
     const button = document.getElementById("getTimeline");
-    const timelineContainer = document.getElementById("timelineData");
+    const timelineDiv = document.getElementById("timelineData");
 
     const appendTimelineDataBlob = (textNode, container) => {
         const timelineDataBlob = document.createElement("timelineDataBlob").appendChild(textNode);
@@ -11,18 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     request.addEventListener("load", function() {
         let textNode = document.createTextNode(this.responseText);
-        appendTimelineDataBlob(textNode, timelineContainer);
+        appendTimelineDataBlob(textNode, timelineDiv);
     });
 
-    button.addEventListener("error", () => {
+    button.addEventListener("error", function() {
         let textNode = document.createTextNode("Nothing here");
-        appendTimelineDataBlob(textNode, timelineContainer);
+        appendTimelineDataBlob(textNode, timelineDiv);
     });
 
     button.addEventListener("click", (event) => {
         event.preventDefault();
 
-        timelineContainer.innerHTML = "";
+        timelineDiv.innerHTML = "";
         request.open("GET", "http://localhost:8080/api/1.0/twitter/timeline");
         request.send();
     });
