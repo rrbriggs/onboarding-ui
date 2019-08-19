@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var request = new XMLHttpRequest();
+var request = new XMLHttpRequest();
 
+document.addEventListener("DOMContentLoaded", function() {
     const button = document.getElementById("getTimeline");
     const timelineDiv = document.getElementById("timelineData");
 
@@ -29,11 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
         getTimeline(timelineDiv, request);
     });
-})
+});
 
 function getTimeline(timelineDiv, request) {
-
     timelineDiv.innerHTML = "";
     request.open("GET", "http://localhost:8080/api/1.0/twitter/timeline");
     request.send();
-}
+
+    request.onerror = function() {
+        timelineDiv.innerHTML = "";
+        timelineDiv.append("Unable to connect to http://localhost:8080/api/1.0/twitter/timeline")
+    };
+};
