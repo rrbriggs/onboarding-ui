@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function() {
     var request = new XMLHttpRequest();
 
     const button = document.getElementById("getTimeline");
@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
         appendTimelineDataBlob(textNode, timelineDiv);
     });
 
-    const appendTimelineDataBlob = (textNode, container) => {
+    const appendTimelineDataBlob = function(textNode, container) {
             const timelineDataBlob = document.createElement("timelineDataBlob").appendChild(textNode);
             container.append(timelineDataBlob);
         };
 
-    button.addEventListener("click", (event) => {
+    button.addEventListener("click", function(event) {
         event.preventDefault();
 
         timelineDiv.innerHTML = "";
