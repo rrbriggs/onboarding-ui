@@ -21,14 +21,10 @@ const server = http.createServer(function(req,resp) {
         let type = types[extensionType];
 
         if(filePath == "index.html") {
-            filePath = "../index.html";
+            filePath = "./index.html";
         } 
 
-        if(filePath == "./js/page.js") {
-            filePath = "../js/page.js";
-        }
-
-        fileSystem.readFile(filePath, function(error, fileContent) {
+        fileSystem.readFile(`.${filePath}`, function(error, fileContent) {
             if(error) {
                 resp.writeHead(500, {'Content-Type': 'text/plain'});
                 resp.end('Error');
