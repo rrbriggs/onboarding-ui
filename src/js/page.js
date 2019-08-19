@@ -4,8 +4,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const button = document.getElementById("getTimeline");
     const timelineDiv = document.getElementById("timelineData");
 
+    // trigger GET request at page load
     getTimeline(timelineDiv, request);
 
+    // "load" = transfer is complete, all data is now in response
     request.addEventListener("load", function() {
         let textNode = document.createTextNode(this.responseText);
         appendTimelineDataBlob(textNode, timelineDiv);
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
         appendTimelineDataBlob(textNode, timelineDiv);
     });
 
+    // put data into div 
     const appendTimelineDataBlob = function(textNode, container) {
         const timelineDataBlob = document.createElement("p").appendChild(textNode);
         container.append(timelineDataBlob);
