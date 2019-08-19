@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var request = new XMLHttpRequest();
+var request = new XMLHttpRequest();
 
+document.addEventListener("DOMContentLoaded", function() {
     const button = document.getElementById("getTimeline");
     const timelineDiv = document.getElementById("timelineData");
 
@@ -21,9 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // put data into div 
     const appendTimelineDataBlob = function(textNode, container) {
-        //textNode is 'object' type (eg typeof textNode == object)
-        //console.log(textNode[0]);
-        const timelineDataBlob = document.createElement("p").appendChild(textNode);
+        const timelineDataBlob = document.createElement("div1").appendChild(textNode);
         container.append(timelineDataBlob);
     };
 
@@ -32,12 +30,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
         getTimeline(timelineDiv, request);
     });
-})
+});
 
 function getTimeline(timelineDiv, request) {
-
     timelineDiv.innerHTML = "";
     request.open("GET", "http://localhost:8080/api/1.0/twitter/timeline");
     request.responseType = 'json';
     request.send();
-}
+
+    request.onerror = function() {
+        if(request.status == 0) {
+            timelineDiv.innerHTML = "";
+            timelineDiv.append("No data currently available.")
+        };
+    };
+};
