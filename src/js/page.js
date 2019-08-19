@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const appendTimelineDataBlob = function(textNode, container) {
-            const timelineDataBlob = document.createElement("timelineDataBlob").appendChild(textNode);
+            const timelineDataBlob = document.createElement("p").appendChild(textNode);
             container.append(timelineDataBlob);
         };
 
