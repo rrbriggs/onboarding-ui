@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // "load" = transfer is complete, all data is now in response
     request.addEventListener("load", function() {
-        let textNode = document.createTextNode(this.responseText);
+        console.log(this.response);
+        let textNode = document.createTextNode(this.response[0]["message"]);
         appendTimelineDataBlob(textNode, timelineDiv);
     });
 
@@ -20,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // put data into div 
     const appendTimelineDataBlob = function(textNode, container) {
+        //textNode is 'object' type (eg typeof textNode == object)
+        //console.log(textNode[0]);
         const timelineDataBlob = document.createElement("p").appendChild(textNode);
         container.append(timelineDataBlob);
     };
@@ -35,5 +38,6 @@ function getTimeline(timelineDiv, request) {
 
     timelineDiv.innerHTML = "";
     request.open("GET", "http://localhost:8080/api/1.0/twitter/timeline");
+    request.responseType = 'json';
     request.send();
 }
