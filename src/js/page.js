@@ -39,9 +39,7 @@ function getTimeline(timelineDiv, request) {
     request.onerror = function() {
         if(request.status == 0) {
             timelineDiv.innerHTML = "";
-            timelineDiv.append("Unable to connect to http://localhost:8080/api/1.0/twitter/timeline")
-        } else {
-            console.log(`Error ${request.status}: ${request.statusText}`)
-        }
+            timelineDiv.append("No data currently available.")
+        };
     };
 };
