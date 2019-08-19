@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // put data into div 
     const appendTimelineDataBlob = function(textNode, container) {
-        const timelineDataBlob = document.createElement("p").appendChild(textNode);
+        const timelineDataBlob = document.createElement("div1").appendChild(textNode);
         container.append(timelineDataBlob);
     };
 
