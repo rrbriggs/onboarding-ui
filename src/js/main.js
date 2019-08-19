@@ -5,8 +5,6 @@ const hostname = '127.0.0.1';
 const port = 9000;
 
 const server = http.createServer(function(req,resp) {
-    // todo: cors policy is the current bottleneck
-    // todo: fix up this trash compactor of code
     let types = {
         ".js": "text/javascript",
         ".html": "text/html"
@@ -21,7 +19,6 @@ const server = http.createServer(function(req,resp) {
 
     if(extensionType in types) {
         let type = types[extensionType];
-        console.log(`type == ${type}`);
 
         if(filePath == "index.html") {
             filePath = "../index.html";
@@ -37,7 +34,6 @@ const server = http.createServer(function(req,resp) {
                 resp.end('Error');
             }
             else {
-                //resp.setHeader("Access-Control-Allow-Origin", "*");
                 resp.writeHead(200, {'Content-Type': type});
                 resp.write(fileContent);
                 resp.end();

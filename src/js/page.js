@@ -4,11 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("getTimeline");
     const timelineDiv = document.getElementById("timelineData");
 
-    const appendTimelineDataBlob = (textNode, container) => {
-        const timelineDataBlob = document.createElement("timelineDataBlob").appendChild(textNode);
-        container.append(timelineDataBlob);
-    }
-
     request.addEventListener("load", function() {
         let textNode = document.createTextNode(this.responseText);
         appendTimelineDataBlob(textNode, timelineDiv);
@@ -18,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         let textNode = document.createTextNode("Nothing here");
         appendTimelineDataBlob(textNode, timelineDiv);
     });
+
+    const appendTimelineDataBlob = (textNode, container) => {
+            const timelineDataBlob = document.createElement("timelineDataBlob").appendChild(textNode);
+            container.append(timelineDataBlob);
+        };
 
     button.addEventListener("click", (event) => {
         event.preventDefault();
