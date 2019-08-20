@@ -69,10 +69,10 @@ function buildTimeline(response, timelineDiv) {
                 newDiv.style.backgroundColor = "LightBlue";
             }
 
-            let newPhotoSpan = document.createElement("img");
-            newPhotoSpan.id = x;
-            newPhotoSpan.src = socialPost.socialUser.profileImageUrl;
-            newDiv.appendChild(newPhotoSpan);
+            let newPhotoElement = document.createElement("img");
+            newPhotoElement.id = x;
+            newPhotoElement.src = socialPost.socialUser.profileImageUrl;
+            newDiv.appendChild(newPhotoElement);
 
             let newMessageSpan = document.createElement("span");
             newMessageSpan.id = x;
