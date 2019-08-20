@@ -9,10 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // "load" = transfer is complete, all data is now in response
     request.addEventListener("load", function() {
-        // todo: work on display data
-
-        console.log(this.response);
- 
         // set up new div per tweet/post
         var toAdd = document.createDocumentFragment();
         for(let x = 0; x < this.response.length; x++) {
@@ -36,8 +32,6 @@ document.addEventListener("DOMContentLoaded", function() {
             let newPhotoSpan = document.createElement("IMG");
             newPhotoSpan.id = x;
             newPhotoSpan.src = this.response[x]["socialUser"]["profileImageUrl"];
-            //let photo = document.createTextNode(this.response[x]["socialUser"]["profileImageUrl"]);
-            //newPhotoSpan.appendChild(photo);
             newDiv.appendChild(newPhotoSpan);
 
             let newMessageSpan = document.createElement("span");
