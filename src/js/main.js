@@ -7,7 +7,8 @@ const port = 9000;
 const server = http.createServer(function(req,resp) {
     let types = {
         ".js": "text/javascript",
-        ".html": "text/html"
+        ".html": "text/html",
+        ".css": "text/css"
     }
     
     var filePath = `.${req.url}`;

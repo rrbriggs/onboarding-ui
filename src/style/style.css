@@ -1,0 +1,19 @@
+/*
+body {
+    background-color: #e8f5fd
+}
+*/
+
+.title {
+    color: black;
+    font-size: 40pt;
+    text-align: center;
+}
+
+.oddPostBlock {
+    background-color: #e8f5fd;
+}
+
+.evenPostBlock {
+    background-color: #e9e9e9;
+}
