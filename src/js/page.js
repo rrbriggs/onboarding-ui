@@ -53,39 +53,41 @@ function buildTimeline(response, timelineDiv) {
         newDiv.id = x;
         
         // make each new post div a clickable link to the post itself
-        let handle = response[x].socialUser.twitterHandle;
-        let postID = response[x].postID;
-        newDiv.addEventListener("click", function() {
-            location.href = `http://twitter.com/${handle}/status/${postID}`;
-        });
+        if(response[x].socialUser.responseID) {
+            let handle = response[x].socialUser.twitterHandle;
+            let postID = response[x].postID;
+            newDiv.addEventListener("click", function() {
+                location.href = `http://twitter.com/${handle}/status/${postID}`;
+            });
 
-        // alternating div colors
-        if (x % 2 == 0) {
-            newDiv.style.backgroundColor = "LightCyan";
-        } else {
-            newDiv.style.backgroundColor = "LightBlue";
-        }
+            // alternating div colors
+            if (x % 2 == 0) {
+                newDiv.style.backgroundColor = "LightCyan";
+            } else {
+                newDiv.style.backgroundColor = "LightBlue";
+            }
 
-        let newPhotoSpan = document.createElement("img");
-        newPhotoSpan.id = x;
-        newPhotoSpan.src = response[x].socialUser.profileImageUrl;
-        newDiv.appendChild(newPhotoSpan);
+            let newPhotoSpan = document.createElement("img");
+            newPhotoSpan.id = x;
+            newPhotoSpan.src = response[x].socialUser.profileImageUrl;
+            newDiv.appendChild(newPhotoSpan);
 
-        let newMessageSpan = document.createElement("span");
-        newMessageSpan.id = x;
-        let message = document.createTextNode(response[x].message);
-        newMessageSpan.appendChild(message);
-        newDiv.appendChild(newMessageSpan);
+            let newMessageSpan = document.createElement("span");
+            newMessageSpan.id = x;
+            let message = document.createTextNode(response[x].message);
+            newMessageSpan.appendChild(message);
+            newDiv.appendChild(newMessageSpan);
 
-        let newDateSpan = document.createElement("span");
-        newDateSpan.id = x;
-        let epochDate = parseInt(response[x].createdAt);
-        let readableDate = new Date(epochDate);
-        let date = document.createTextNode(readableDate);
-        newDateSpan.appendChild(date);
-        newDiv.appendChild(newDateSpan);
+            let newDateSpan = document.createElement("span");
+            newDateSpan.id = x;
+            let epochDate = parseInt(response[x].createdAt);
+            let readableDate = new Date(epochDate);
+            let date = document.createTextNode(readableDate);
+            newDateSpan.appendChild(date);
+            newDiv.appendChild(newDateSpan);
 
-        toAdd.appendChild(newDiv);
+            toAdd.appendChild(newDiv); 
+        } 
     }
     timelineDiv.append(toAdd);
 }
