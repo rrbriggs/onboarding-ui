@@ -1,8 +1,11 @@
 var request = new XMLHttpRequest();
 
 document.addEventListener("DOMContentLoaded", function() {
-    const button = document.getElementById("getTimeline");
     const timelineDiv = document.getElementById("timelineData");
+
+    //set up title formatting
+    const titleDiv = document.getElementById("titleDiv");
+    titleDiv.className = "title";
 
     // trigger GET request at page load
     getTimeline(timelineDiv, request);
@@ -11,23 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
     request.addEventListener("load", function() {
         // set up new div per tweet/post
         buildTimeline(this.response, timelineDiv);
-    });
-
-    button.addEventListener("error", function() {
-        let textNode = document.createTextNode("Nothing here");
-        appendTimelineDataBlob(textNode, timelineDiv);
-    });
-
-    // put data into div 
-    const appendTimelineDataBlob = function(textNode, container) {
-        const timelineDataBlob = document.createElement("div").appendChild(textNode);
-        container.append(timelineDataBlob);
-    }
-
-    button.addEventListener("click", function(event) {
-        event.preventDefault();
-
-        getTimeline(timelineDiv, request);
     });
 });
 
@@ -64,9 +50,11 @@ function buildTimeline(response, timelineDiv) {
 
             // alternating div colors
             if (x % 2 == 0) {
-                newDiv.style.backgroundColor = "LightCyan";
+                //newDiv.style.backgroundColor = "LightCyan";
+                newDiv.className = "oddPostBlock";
             } else {
-                newDiv.style.backgroundColor = "LightBlue";
+                //newDiv.style.backgroundColor = "LightBlue";
+                newDiv.className = "evenPostBlock";
             }
 
             let newPhotoElement = document.createElement("img");
