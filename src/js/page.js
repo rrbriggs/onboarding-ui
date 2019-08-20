@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
 function getTimeline(timelineDiv, request) {
     timelineDiv.innerHTML = "";
     request.open("GET", "http://localhost:8080/api/1.0/twitter/timeline");
-    request.responseType = 'json';
     request.send();
 
     request.onerror = function() {
@@ -46,16 +45,19 @@ function getTimeline(timelineDiv, request) {
 }
 
 function buildTimeline(response, timelineDiv) {
+    let postJson = JSON.parse(response);
     var toAdd = document.createDocumentFragment();
 
-    for(let x = 0; x < response.length; x++) {
+    for(let x = 0; x < postJson.length; x++) {
+        let socialPost = postJson[x];
+
         let newDiv = document.createElement("div");
         newDiv.id = x;
         
         // make each new post div a clickable link to the post itself
-        if(response[x].socialUser.responseID) {
-            let handle = response[x].socialUser.twitterHandle;
-            let postID = response[x].postID;
+        if(socialPost.postID) {
+            let handle = socialPost.socialUser.twitterHandle;
+            let postID = socialPost.postID;
             newDiv.addEventListener("click", function() {
                 location.href = `http://twitter.com/${handle}/status/${postID}`;
             });
@@ -69,25 +71,26 @@ function buildTimeline(response, timelineDiv) {
 
             let newPhotoSpan = document.createElement("img");
             newPhotoSpan.id = x;
-            newPhotoSpan.src = response[x].socialUser.profileImageUrl;
+            newPhotoSpan.src = socialPost.socialUser.profileImageUrl;
             newDiv.appendChild(newPhotoSpan);
 
             let newMessageSpan = document.createElement("span");
             newMessageSpan.id = x;
-            let message = document.createTextNode(response[x].message);
+            let message = document.createTextNode(socialPost.message);
             newMessageSpan.appendChild(message);
             newDiv.appendChild(newMessageSpan);
 
             let newDateSpan = document.createElement("span");
             newDateSpan.id = x;
-            let epochDate = parseInt(response[x].createdAt);
+            let epochDate = parseInt(socialPost.createdAt);
             let readableDate = new Date(epochDate);
             let date = document.createTextNode(readableDate);
             newDateSpan.appendChild(date);
             newDiv.appendChild(newDateSpan);
 
-            toAdd.appendChild(newDiv); 
-        } 
+            toAdd.appendChild(newDiv);    
+        }    
+        
     }
     timelineDiv.append(toAdd);
 }
