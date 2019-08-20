@@ -90,7 +90,6 @@ function buildTimeline(response, timelineDiv) {
 
             toAdd.appendChild(newDiv);    
         }    
-        
     }
     timelineDiv.append(toAdd);
 }
