@@ -53,8 +53,8 @@ function buildTimeline(response, timelineDiv) {
         newDiv.id = x;
         
         // make each new post div a clickable link to the post itself
-        let handle = response[x]["socialUser"]["twitterHandle"];
-        let postID = response[x]["postID"];
+        let handle = response[x].socialUser.twitterHandle;
+        let postID = response[x].postID;
         newDiv.addEventListener("click", function() {
             location.href = `http://twitter.com/${handle}/status/${postID}`;
         });
@@ -66,20 +66,20 @@ function buildTimeline(response, timelineDiv) {
             newDiv.style.backgroundColor = "LightBlue";
         }
 
-        let newPhotoSpan = document.createElement("IMG");
+        let newPhotoSpan = document.createElement("img");
         newPhotoSpan.id = x;
-        newPhotoSpan.src = response[x]["socialUser"]["profileImageUrl"];
+        newPhotoSpan.src = response[x].socialUser.profileImageUrl;
         newDiv.appendChild(newPhotoSpan);
 
         let newMessageSpan = document.createElement("span");
         newMessageSpan.id = x;
-        let message = document.createTextNode(response[x]["message"]);
+        let message = document.createTextNode(response[x].message);
         newMessageSpan.appendChild(message);
         newDiv.appendChild(newMessageSpan);
 
         let newDateSpan = document.createElement("span");
         newDateSpan.id = x;
-        let epochDate = parseInt(response[x]["createdAt"]);
+        let epochDate = parseInt(response[x].createdAt);
         let readableDate = new Date(epochDate);
         let date = document.createTextNode(readableDate);
         newDateSpan.appendChild(date);
