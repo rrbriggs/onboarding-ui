@@ -55,7 +55,7 @@ function buildTimeline(response, timelineDiv) {
         newDiv.id = x;
         
         // make each new post div a clickable link to the post itself
-        if(socialPost.socialUser != null) {
+        if(socialPost.socialUser != null && socialPost != null) {
             let handle = socialPost.socialUser.twitterHandle;
             let postID = socialPost.postID;
             newDiv.addEventListener("click", function() {
