@@ -11,7 +11,11 @@ body {
 }
 
 .timelineDiv {
-    margin: 3%;
+    margin-top: 1.5%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+
     border-style: groove;
     border-width: 1px;
     border-color: #686868;
@@ -62,7 +66,8 @@ body {
     color: black;
     font-size: 40pt;
     text-align: center;
-    margin: 2%;
+    margin-top: 1.5%;
+    margin-bottom: 0%;
 }
 
 .postStyle {
