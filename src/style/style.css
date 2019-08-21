@@ -4,10 +4,52 @@ body {
 }
 */
 
+.master {
+    font-family: Geneva;
+    font-size: 10pt;
+}
+
+.timelineDiv {
+    margin: 2.5%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.date {
+    font-size: 7pt;
+    font-style: italic;
+}
+
+/* .message {
+    float: left;
+} */
+
+.imageContainer {
+    width: 100%;
+}
+
+.image {
+    text-align: center;
+    overflow: auto;
+    width: 100%;
+    
+    max-width: 58px;
+    
+    min-height: 88px;
+    max-height: 90px;
+    height: 100%;
+}
+
 .title {
     color: black;
     font-size: 40pt;
     text-align: center;
+    margin: 2%;
+}
+
+.postStyle {
+    padding: 1%;
 }
 
 .oddPostBlock {

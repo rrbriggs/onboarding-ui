@@ -2,10 +2,17 @@ var request = new XMLHttpRequest();
 
 document.addEventListener("DOMContentLoaded", function() {
     const timelineDiv = document.getElementById("timelineData");
+    timelineDiv.className = "timelineDiv";
 
-    //set up title formatting
+    // set up overall doc stuff (font)
+    const parentDiv = document.getElementById("parentDiv");
+    parentDiv.className = "master";
+
+
+
+    // set up title formatting
     const titleDiv = document.getElementById("titleDiv");
-    titleDiv.className = "title";
+    titleDiv.className = "title master";
 
     // trigger GET request at page load
     getTimeline(timelineDiv, request);
@@ -51,30 +58,44 @@ function buildTimeline(response, timelineDiv) {
             // alternating div colors
             if (x % 2 == 0) {
                 //newDiv.style.backgroundColor = "LightCyan";
-                newDiv.className = "oddPostBlock";
+                newDiv.className = "oddPostBlock postStyle";
             } else {
                 //newDiv.style.backgroundColor = "LightBlue";
-                newDiv.className = "evenPostBlock";
+                newDiv.className = "evenPostBlock postStyle";
             }
 
+            let newPhotoSpan = document.createElement("span");
+            let newPhotoDiv = document.createElement("div");
             let newPhotoElement = document.createElement("img");
-            newPhotoElement.id = x;
-            newPhotoElement.src = socialPost.socialUser.profileImageUrl;
-            newDiv.appendChild(newPhotoElement);
 
-            let newMessageSpan = document.createElement("span");
-            newMessageSpan.id = x;
-            let message = document.createTextNode(socialPost.message);
-            newMessageSpan.appendChild(message);
-            newDiv.appendChild(newMessageSpan);
+            newPhotoSpan.id = `photoSpan${x}`;
+            newPhotoDiv.id = `photoDiv${x}`;
+            newPhotoElement.id = `photoEle${x}`;
+            
+            newPhotoSpan.className = "image";
+            newPhotoDiv.className = "image";
+
+            newPhotoElement.src = socialPost.socialUser.profileImageUrl;
+
+            newDiv.appendChild(newPhotoSpan)
+                  .appendChild(newPhotoDiv)
+                  .appendChild(newPhotoElement);
 
             let newDateSpan = document.createElement("span");
             newDateSpan.id = x;
+            newDateSpan.className = "date";
             let epochDate = parseInt(socialPost.createdAt);
             let readableDate = new Date(epochDate);
             let date = document.createTextNode(readableDate);
             newDateSpan.appendChild(date);
             newDiv.appendChild(newDateSpan);
+
+            let newMessageSpan = document.createElement("span");
+            newMessageSpan.id = x;
+            newMessageSpan.className = "message";
+            let message = document.createTextNode(socialPost.message);
+            newMessageSpan.appendChild(message);
+            newDiv.appendChild(newMessageSpan);
 
             toAdd.appendChild(newDiv);    
         }    
