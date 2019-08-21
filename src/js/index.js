@@ -1,6 +1,8 @@
 var request = new XMLHttpRequest();
 
 document.addEventListener("DOMContentLoaded", function() {
+    const infoContainer = document.getElementById("infoContainer");
+    const button = document.createElement("button");
     const timelineDiv = document.getElementById("timelineData");
     timelineDiv.className = "timelineDiv";
 
@@ -8,11 +10,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const parentDiv = document.getElementById("parentDiv");
     parentDiv.className = "master";
 
-
-
     // set up title formatting
     const titleDiv = document.getElementById("titleDiv");
     titleDiv.className = "title master";
+
+    button.innerHTML = "Get Timeline";
+    button.id = "getTimeline Button";
+    button.className = "button";
+    infoContainer.className = "infoContainer";
+    infoContainer.appendChild(button);
 
     // trigger GET request at page load
     getTimeline(timelineDiv, request);
@@ -22,6 +28,17 @@ document.addEventListener("DOMContentLoaded", function() {
         // set up new div per tweet/post
         buildTimeline(this.response, timelineDiv);
     });
+
+    button.addEventListener("click", function(event) {
+        event.preventDefault();
+        getTimeline(timelineDiv, request);
+    });
+
+    button.addEventListener("error", function() {
+        let errMessage = document.createTextNode("Nothing here");
+        let timelineContainer = document.getElementById("infoContainer");
+        timelineContainer.appendChild(errMessage);
+    })
 });
 
 function getTimeline(timelineDiv, request) {
