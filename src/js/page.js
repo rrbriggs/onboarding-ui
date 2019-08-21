@@ -85,7 +85,7 @@ function buildTimeline(response, timelineDiv) {
             photoContainer.appendChild(photoScreenNameContainer);
             photoContainer.appendChild(photoHandleContainer);
 
-            // newPostDiv is the entire
+            // postContainer is the entire post
             postContainer.appendChild(photoContainer);
 
             let messageContainer = document.createElement("div");
@@ -94,6 +94,7 @@ function buildTimeline(response, timelineDiv) {
 
             messageContainer.className = "messageContainer";
 
+            // build date
             newDateSpan.className = "date";
             let epochDate = parseInt(socialPost.createdAt);
             let readableDate = new Date(epochDate);
@@ -104,6 +105,7 @@ function buildTimeline(response, timelineDiv) {
             newDateSpan.appendChild(date);
             messageContainer.appendChild(newDateSpan);
 
+            // build message
             messageSpan.className = "message";
             let message = document.createTextNode(socialPost.message);
             messageSpan.appendChild(message);
