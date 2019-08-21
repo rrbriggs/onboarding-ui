@@ -37,7 +37,7 @@ body {
 
 .photoContainer {
     width: 100%;
-    max-width: 150px;
+    max-width: 145px;
     overflow: hidden;
     display: inline-block;
     flex-direction: column;
