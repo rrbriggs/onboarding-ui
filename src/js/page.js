@@ -44,60 +44,60 @@ function buildTimeline(response, timelineDiv) {
     for(let x = 0; x < postJson.length; x++) {
         let socialPost = postJson[x];
 
-        let newDiv = document.createElement("div");
-        newDiv.id = x;
+        let newPostDiv = document.createElement("div");
+        newPostDiv.id = x;
         
         // make each new post div a clickable link to the post itself
         if(socialPost.socialUser != null && socialPost.message != null) {
             let handle = socialPost.socialUser.twitterHandle;
             let postID = socialPost.postID;
-            newDiv.addEventListener("click", function() {
+            newPostDiv.addEventListener("click", function() {
                 location.href = `http://twitter.com/${handle}/status/${postID}`;
             });
 
             // alternating div colors
             if (x % 2 == 0) {
                 //newDiv.style.backgroundColor = "LightCyan";
-                newDiv.className = "oddPostBlock postStyle";
+                newPostDiv.className = "oddPostBlock postStyle";
             } else {
                 //newDiv.style.backgroundColor = "LightBlue";
-                newDiv.className = "evenPostBlock postStyle";
+                newPostDiv.className = "evenPostBlock postStyle";
             }
 
             let newPhotoSpan = document.createElement("span");
             let newPhotoDiv = document.createElement("div");
             let newPhotoElement = document.createElement("img");
 
-            newPhotoSpan.id = `photoSpan${x}`;
-            newPhotoDiv.id = `photoDiv${x}`;
-            newPhotoElement.id = `photoEle${x}`;
+            // newPhotoSpan.id = `photoSpan${x}`;
+            // newPhotoDiv.id = `photoDiv${x}`;
+            // newPhotoElement.id = `photoEle${x}`;
             
             newPhotoSpan.className = "image";
             newPhotoDiv.className = "image";
 
             newPhotoElement.src = socialPost.socialUser.profileImageUrl;
 
-            newDiv.appendChild(newPhotoSpan)
+            newPostDiv.appendChild(newPhotoSpan)
                   .appendChild(newPhotoDiv)
                   .appendChild(newPhotoElement);
 
             let newDateSpan = document.createElement("span");
-            newDateSpan.id = x;
+            //newDateSpan.id = x;
             newDateSpan.className = "date";
             let epochDate = parseInt(socialPost.createdAt);
             let readableDate = new Date(epochDate);
             let date = document.createTextNode(readableDate);
             newDateSpan.appendChild(date);
-            newDiv.appendChild(newDateSpan);
+            newPostDiv.appendChild(newDateSpan);
 
             let newMessageSpan = document.createElement("span");
-            newMessageSpan.id = x;
+            //newMessageSpan.id = x;
             newMessageSpan.className = "message";
             let message = document.createTextNode(socialPost.message);
             newMessageSpan.appendChild(message);
-            newDiv.appendChild(newMessageSpan);
+            newPostDiv.appendChild(newMessageSpan);
 
-            toAdd.appendChild(newDiv);    
+            toAdd.appendChild(newPostDiv);    
         }    
     }
     timelineDiv.append(toAdd);
