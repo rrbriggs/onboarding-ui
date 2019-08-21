@@ -44,63 +44,74 @@ function buildTimeline(response, timelineDiv) {
     for(let x = 0; x < postJson.length; x++) {
         let socialPost = postJson[x];
 
-        let newPostContainer = document.createElement("div");
-        newPostContainer.id = x;
+        let postContainer = document.createElement("div");
+        postContainer.id = x;
         
         // make each new post div a clickable link to the post itself
         if(socialPost.socialUser != null && socialPost.message != null) {
             let handle = socialPost.socialUser.twitterHandle;
+            let screenName = socialPost.socialUser.name;
             let postID = socialPost.postID;
-            newPostContainer.addEventListener("click", function() {
+            postContainer.addEventListener("click", function() {
                 location.href = `http://twitter.com/${handle}/status/${postID}`;
             });
 
             // alternating div colors
             if (x % 2 == 0) {
 
-                newPostContainer.className = "oddPostBlock postStyle";
+                postContainer.className = "oddPostBlock postStyle";
             } else {
-                newPostContainer.className = "evenPostBlock postStyle";
+                postContainer.className = "evenPostBlock postStyle";
             }
 
             let photoContainer = document.createElement("div");
-            let newPhotoElement = document.createElement("img");
-            let photoSpanNameContainer = document.createElement("span");
+            let photoElement = document.createElement("img");
+            let photoScreenNameContainer = document.createElement("div");
+            let photoHandleContainer = document.createElement("div");
             
-            // todo: might need to remove/edit this class
-            photoContainer.className = "image";
-            photoSpanNameContainer.className = "image";
-            
-            newPhotoElement.src = socialPost.socialUser.profileImageUrl;
+            photoElement.src = socialPost.socialUser.profileImageUrl;
+            let photoScreenName = document.createTextNode(screenName);
+            let photoHandle = document.createTextNode(handle);
 
-            photoContainer.appendChild(newPhotoElement);
-            photoContainer.appendChild(photoSpanNameContainer);
+            photoScreenNameContainer.className = "screenName";
+            photoHandleContainer.className = "handle";
+            photoContainer.className = "photoContainer";
+            photoElement.className = "image";
+
+            photoScreenNameContainer.appendChild(photoScreenName);
+            photoHandleContainer.appendChild(photoHandle);
+
+            photoContainer.appendChild(photoElement);
+            photoContainer.appendChild(photoScreenNameContainer);
+            photoContainer.appendChild(photoHandleContainer);
 
             // newPostDiv is the entire
-            newPostContainer.appendChild(photoContainer);
-
-            //newPostContainer.appendChild(messageContainer);
+            postContainer.appendChild(photoContainer);
 
             let messageContainer = document.createElement("div");
             let messageSpan = document.createElement("span");
             let newDateSpan = document.createElement("span");
 
+            messageContainer.className = "messageContainer";
+
             newDateSpan.className = "date";
             let epochDate = parseInt(socialPost.createdAt);
             let readableDate = new Date(epochDate);
-            let date = document.createTextNode(readableDate);
+            
+            let postDate = (readableDate.toLocaleString('default', {month: 'short'})) + " " + readableDate.getDate();
+            console.log(postDate);
+            let date = document.createTextNode(postDate);
             newDateSpan.appendChild(date);
             messageContainer.appendChild(newDateSpan);
 
-            //let newMessageSpan = document.createElement("span");
             messageSpan.className = "message";
             let message = document.createTextNode(socialPost.message);
             messageSpan.appendChild(message);
             messageContainer.appendChild(messageSpan);
 
-            newPostContainer.appendChild(messageContainer);
+            postContainer.appendChild(messageContainer);
 
-            toAdd.appendChild(newPostContainer);    
+            toAdd.appendChild(postContainer);    
         }    
     }
     timelineDiv.append(toAdd);
