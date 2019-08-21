@@ -44,60 +44,63 @@ function buildTimeline(response, timelineDiv) {
     for(let x = 0; x < postJson.length; x++) {
         let socialPost = postJson[x];
 
-        let newPostDiv = document.createElement("div");
-        newPostDiv.id = x;
+        let newPostContainer = document.createElement("div");
+        newPostContainer.id = x;
         
         // make each new post div a clickable link to the post itself
         if(socialPost.socialUser != null && socialPost.message != null) {
             let handle = socialPost.socialUser.twitterHandle;
             let postID = socialPost.postID;
-            newPostDiv.addEventListener("click", function() {
+            newPostContainer.addEventListener("click", function() {
                 location.href = `http://twitter.com/${handle}/status/${postID}`;
             });
 
             // alternating div colors
             if (x % 2 == 0) {
-                //newDiv.style.backgroundColor = "LightCyan";
-                newPostDiv.className = "oddPostBlock postStyle";
+
+                newPostContainer.className = "oddPostBlock postStyle";
             } else {
-                //newDiv.style.backgroundColor = "LightBlue";
-                newPostDiv.className = "evenPostBlock postStyle";
+                newPostContainer.className = "evenPostBlock postStyle";
             }
 
-            let newPhotoSpan = document.createElement("span");
-            let newPhotoDiv = document.createElement("div");
+            let photoContainer = document.createElement("div");
             let newPhotoElement = document.createElement("img");
-
-            // newPhotoSpan.id = `photoSpan${x}`;
-            // newPhotoDiv.id = `photoDiv${x}`;
-            // newPhotoElement.id = `photoEle${x}`;
+            let photoSpanNameContainer = document.createElement("span");
             
-            newPhotoSpan.className = "image";
-            newPhotoDiv.className = "image";
-
+            // todo: might need to remove/edit this class
+            photoContainer.className = "image";
+            photoSpanNameContainer.className = "image";
+            
             newPhotoElement.src = socialPost.socialUser.profileImageUrl;
 
-            newPostDiv.appendChild(newPhotoSpan)
-                  .appendChild(newPhotoDiv)
-                  .appendChild(newPhotoElement);
+            photoContainer.appendChild(newPhotoElement);
+            photoContainer.appendChild(photoSpanNameContainer);
 
+            // newPostDiv is the entire
+            newPostContainer.appendChild(photoContainer);
+
+            //newPostContainer.appendChild(messageContainer);
+
+            let messageContainer = document.createElement("div");
+            let messageSpan = document.createElement("span");
             let newDateSpan = document.createElement("span");
-            //newDateSpan.id = x;
+
             newDateSpan.className = "date";
             let epochDate = parseInt(socialPost.createdAt);
             let readableDate = new Date(epochDate);
             let date = document.createTextNode(readableDate);
             newDateSpan.appendChild(date);
-            newPostDiv.appendChild(newDateSpan);
+            messageContainer.appendChild(newDateSpan);
 
-            let newMessageSpan = document.createElement("span");
-            //newMessageSpan.id = x;
-            newMessageSpan.className = "message";
+            //let newMessageSpan = document.createElement("span");
+            messageSpan.className = "message";
             let message = document.createTextNode(socialPost.message);
-            newMessageSpan.appendChild(message);
-            newPostDiv.appendChild(newMessageSpan);
+            messageSpan.appendChild(message);
+            messageContainer.appendChild(messageSpan);
 
-            toAdd.appendChild(newPostDiv);    
+            newPostContainer.appendChild(messageContainer);
+
+            toAdd.appendChild(newPostContainer);    
         }    
     }
     timelineDiv.append(toAdd);
