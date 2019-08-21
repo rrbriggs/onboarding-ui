@@ -27,14 +27,13 @@ body {
 }
 
 .button {
-    border-top: 1px outset black;
-    border-left: 1px outset black;
-    border-right: 1px outset black;
+    border: 1px outset black;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 
 .date {
-    padding-bottom: 19px;
+    padding-bottom: 9px;
     font-size: 7pt;
     font-style: italic;
 }
@@ -42,7 +41,7 @@ body {
 .messageContainer {
     padding-top: 26px;
     padding-left: 2px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     text-align: left;
