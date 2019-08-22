@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // set up title formatting
     const titleDiv = document.getElementById("titleDiv");
-    titleDiv.className = "title master";
+    titleDiv.className = "title";
 
     button.innerHTML = "Get Timeline";
     button.id = "getTimeline Button";
