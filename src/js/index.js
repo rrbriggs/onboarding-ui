@@ -33,12 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
         getTimeline(timelineDiv, request);
     });
-
-    button.addEventListener("error", function() {
-        let errMessage = document.createTextNode("Nothing here");
-        let timelineContainer = document.getElementById("infoContainer");
-        timelineContainer.appendChild(errMessage);
-    })
 });
 
 function getTimeline(timelineDiv, request) {
@@ -49,6 +43,7 @@ function getTimeline(timelineDiv, request) {
     request.onerror = function() {
         if(request.status == 0) {
             timelineDiv.innerHTML = "";
+            timelineDiv.className = "error"
             timelineDiv.append("No data currently available.")
         };
     };
