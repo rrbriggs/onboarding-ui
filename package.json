@@ -1,0 +1,36 @@
+{
+  "name": "onboarding-ui",
+  "version": "1.0.0",
+  "description": "## how to run: Install Node.js version `v10.16.2` To check your node version, in terminal enter `node -v`",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config './webpack.config.js'",
+    "build": "webpack"
+  },
+  "build": "webpack",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrbriggs/onboarding-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rrbriggs/onboarding-ui/issues"
+  },
+  "homepage": "https://github.com/rrbriggs/onboarding-ui#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel": ">6.5.5",
+    "babel-core": ">5.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
+    "file-loader": "^4.0.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.7.1"
+  }
+}
