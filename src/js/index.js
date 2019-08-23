@@ -1,3 +1,4 @@
+import "../style/style.css";
 var request = new XMLHttpRequest();
 
 document.addEventListener("DOMContentLoaded", function() {
