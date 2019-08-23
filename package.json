@@ -2,7 +2,6 @@
   "name": "onboarding-ui",
   "version": "1.0.0",
   "description": "## how to run: Install Node.js version `v10.16.2` To check your node version, in terminal enter `node -v`",
-  "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config './webpack.config.js'",
