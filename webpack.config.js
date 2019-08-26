@@ -3,6 +3,7 @@ webpack = require("webpack");
  
 module.exports = {
     mode: "development",
+    watch: true,
     entry: "./src/js/index.js",
     output: {
         filename: "bundle.js"
@@ -11,6 +12,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, "./dist"),
         publicPath: "/src/js",
         watchContentBase: true, // live reload
+        liveReload: true,
         compress: true,
         port: 9000
     },

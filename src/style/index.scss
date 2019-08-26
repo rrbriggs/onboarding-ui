@@ -1,80 +1,81 @@
-* {
-    font-family: serif;
+$font-stack: serif;
+
+.master {
+    font-family: $font-stack;
     font-size: 11pt;
     width: 100%;
-}
 
-.timelineDiv {
-    margin: 0px 32px 32px;
-    border: 1px groove #686868;
-}
+    .error {
+        padding-left: 33px;
+    }
 
-.infoContainer {
-    margin: 0px 33px;
-}
+    .title {
+        font: 40pt black;
+        text-align: center;
+        margin: 1.5% 0 0;
+    }
 
-.error {
-    padding-left: 33px;
-}
+    .infoContainer {
+        margin: 0px 33px;
 
-.button {
-    border: 1px outset black;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
+        .button {
+            border: 1px outset black;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+    }
 
-.date {
-    padding-bottom: 9px;
-    font-size: 7pt;
-    font-style: italic;
-}
+    .timelineDiv {
+        margin: 0px 32px 32px;
+        border: 1px groove #686868;
 
-.messageContainer {
-    padding: 26px 0px 20px 2px; 
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
+        .postStyle {
+            padding: 8px;
+            display: flex;
+            flex-direction: row;
+            vertical-align: middle;
+            border-bottom: 1px groove #c0c0c0;
+            cursor: pointer;
 
-.photoContainer {
-    width: 100%;
-    max-width: 145px;
-    overflow: hidden;
-    display: inline-block;
-    flex-direction: column;
-    vertical-align: middle;
-    text-align: center;
-}
+            .messageContainer {
+                padding: 26px 0px 20px 2px; 
+                display: flex;
+                flex-direction: column;
+                text-align: left;
 
-.image {
-    border-radius: 50%;
-    margin: auto;
-    overflow: hidden;
-    max-width: 48px;
-    max-height: 48px;
-}
+                .date {
+                    padding-bottom: 9px;
+                    font-size: 7pt;
+                    font-style: italic;
+                }
+            }
 
-.screenName {
-    font-weight: bold;
-}
+            .photoContainer {
+                width: 100%;
+                max-width: 145px;
+                overflow: hidden;
+                display: inline-block;
+                flex-direction: column;
+                vertical-align: middle;
+                text-align: center;
 
-.handle {
-    font-size: 8pt;
-}
+                .image {
+                    border-radius: 50%;
+                    margin: auto;
+                    overflow: hidden;
+                    max-width: 48px;
+                    max-height: 48px;
+                }
+                .screenName {
+                    font-weight: bold;
+                }
 
-.title {
-    font: 40pt black;
-    text-align: center;
-    margin: 1.5% 0 0;
-}
-
-.postStyle {
-    padding: 8px;
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    border-bottom: 1px groove #c0c0c0;
-    cursor: pointer;
+                .handle {
+                    font-size: 8pt;
+                }
+            }
+        }
+    }
 }
 
 .oddPostBlock {
