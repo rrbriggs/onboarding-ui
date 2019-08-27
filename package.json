@@ -2,9 +2,16 @@
   "name": "onboarding-ui",
   "version": "1.0.0",
   "description": "## how to run: Install Node.js version `v10.16.2` To check your node version, in terminal enter `node -v`",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch",
+    "watch": "webpack -d --watch",
+    "start": "npm run watch && npm run dev",
     "dev": "webpack-dev-server",
     "build": "webpack"
   },
@@ -19,17 +26,13 @@
     "url": "https://github.com/rrbriggs/onboarding-ui/issues"
   },
   "homepage": "https://github.com/rrbriggs/onboarding-ui#readme",
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "babel": ">6.5.5",
-    "babel-core": ">5.0.0",
     "babel-loader": "^8.0.6",
-    "babel-preset-react": "^6.24.1",
     "css-loader": "^2.1.1",
     "file-loader": "^4.0.0",
-    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -40,8 +43,5 @@
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.7.1"
-  },
-  "devDependencies": {
-    "react-hot-loader": "^4.12.11"
   }
 }
