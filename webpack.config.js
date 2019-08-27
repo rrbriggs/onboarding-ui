@@ -30,7 +30,7 @@ module.exports = {
             test: /\.(js|jsx)$/,
             use: {
                 loader: 'babel-loader',
-                options: {
+                query: {
                     presets: ['@babel/preset-env']
                 }
             }
