@@ -8,7 +8,6 @@
     "dev": "webpack-dev-server",
     "build": "webpack"
   },
-  "build": "webpack",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rrbriggs/onboarding-ui.git"
