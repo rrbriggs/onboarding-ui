@@ -34,8 +34,13 @@ module.exports = {
             },
             use: {
                 loader: 'babel-loader',
+<<<<<<< HEAD
                 options: {
                     presets: ['@babel/preset-env', 'react']
+=======
+                query: {
+                    presets: ['@babel/preset-env']
+>>>>>>> sass
                 }
             }
         }]
