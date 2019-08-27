@@ -1,5 +1,10 @@
 import  "../style/index.scss";
-import Hello from "./hellomessage";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import HelloReact from '../js/hellomessage';
+
+ReactDOM.render(< HelloReact />, document.getElementById('reactContainer'));
+
 
 var request = new XMLHttpRequest();
 
@@ -9,8 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const timelineDiv = document.getElementById("timelineData");
     timelineDiv.className = "timelineDiv";
 
-    const reactContainer = document.getElementById("reactContainer");
-    ReactDOM.render(<Hello />, reactContainer);
+    //const reactContainer = document.getElementById("reactContainer");
 
     // set up overall doc stuff (font)
     const parentDiv = document.getElementById("parentDiv");
@@ -25,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     button.className = "button";
     infoContainer.className = "infoContainer";
     infoContainer.appendChild(button);
+
 
     // trigger GET request at page load
     getTimeline(timelineDiv, request);
