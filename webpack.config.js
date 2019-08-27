@@ -34,13 +34,10 @@ module.exports = {
             },
             use: {
                 loader: 'babel-loader',
-                query: {
-                    presets: ['@babel/preset-env', 'react']
+                options: {
+                    presets: ['@babel/preset-react']
                 }
             }
         }]
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ]
+    }
 }
