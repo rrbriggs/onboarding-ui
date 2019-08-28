@@ -12,6 +12,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, "./dist"),
         publicPath: "/src/js",
         watchContentBase: true, // live reload
+        hot: true,
         liveReload: true,
         compress: true,
         port: 9000
@@ -28,10 +29,13 @@ module.exports = {
         },
         {
             test: /\.(js|jsx)$/,
+            resolve: {
+                extensions: ['.js', '.jsx']
+            },
             use: {
                 loader: 'babel-loader',
-                query: {
-                    presets: ['@babel/preset-env']
+                options: {
+                    presets: ['@babel/preset-react']
                 }
             }
         }]
