@@ -5,7 +5,7 @@ Install Node.js version `v10.16.2`
 To check your node version, in terminal enter `node -v`
 
 ### clone the project
-In terminal, at the directory you wish to clone the project to type `git clone --single-branch --branch visualization https://github.com/rrbriggs/onboarding-ui.git`
+In terminal, at the directory you wish to clone the project to type `git clone --single-branch --branch react-es6 https://github.com/rrbriggs/onboarding-ui.git`
 
 ### start the server
 In terminal, navigate to the /src/js directory (e.g.: `cd src/js/`)
