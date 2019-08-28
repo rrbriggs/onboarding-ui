@@ -22,10 +22,7 @@ Install [NPM](https://www.npmjs.com/), check your installation by running in ter
 In the root of the project initialize npm by running `npm init -y`
 Download required dependencies by running `npm install`
 
-Build the webpack project by running this command in the root directory of the project in terminal 
-`npm run build`
-
-Now you may run webpack using `npm run dev`
+Now you may run webpack using `npm run start`
 
 In your browser go to (http://127.0.0.1:9000/)
 
