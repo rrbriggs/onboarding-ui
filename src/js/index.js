@@ -3,9 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import HelloReact from '../js/hellomessage';
 
-const reactContainer = document.getElementById('reactContainer');
-reactContainer.className = 'reactContainer';
-ReactDOM.render(< HelloReact />, document.getElementById('reactContainer'));
 
 const request = new XMLHttpRequest();
 
@@ -14,7 +11,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const button = document.createElement("button");
     const timelineDiv = document.getElementById("timelineData");
     timelineDiv.className = "timelineDiv";
-
+    
+    const reactContainer = document.getElementById('reactContainer');
+    reactContainer.className = 'reactContainer';
+    ReactDOM.render(< HelloReact />, reactContainer);
+    
     // set up overall doc stuff (font)
     const parentDiv = document.getElementById("parentDiv");
     parentDiv.className = "master";
