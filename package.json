@@ -4,10 +4,10 @@
   "description": "## how to run: Install Node.js version `v10.16.2` To check your node version, in terminal enter `node -v`",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config './webpack.config.js'",
+    "watch": "webpack --watch",
+    "dev": "webpack-dev-server",
     "build": "webpack"
   },
-  "build": "webpack",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rrbriggs/onboarding-ui.git"
@@ -19,7 +19,7 @@
     "url": "https://github.com/rrbriggs/onboarding-ui/issues"
   },
   "homepage": "https://github.com/rrbriggs/onboarding-ui#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "babel": ">6.5.5",
@@ -27,7 +27,11 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
     "file-loader": "^4.0.0",
-    "style-loader": "^0.23.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "sass": "^1.21.0",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^0.23.1",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.7.1"

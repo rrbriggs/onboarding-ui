@@ -3,6 +3,7 @@ webpack = require("webpack");
  
 module.exports = {
     mode: "development",
+    watch: true,
     entry: "./src/js/index.js",
     output: {
         filename: "bundle.js"
@@ -11,23 +12,25 @@ module.exports = {
         contentBase: path.resolve(__dirname, "./dist"),
         publicPath: "/src/js",
         watchContentBase: true, // live reload
+        liveReload: true,
         compress: true,
         port: 9000
     },
     //devtool: "source-map", // map
     module: {
         rules: [{
-            test: /\.(css)$/,
+            test: /\.(scss)$/,
             use: [
                 "style-loader",
-                "css-loader"
+                "css-loader",
+                "sass-loader"
             ]
         },
         {
             test: /\.(js|jsx)$/,
             use: {
                 loader: 'babel-loader',
-                options: {
+                query: {
                     presets: ['@babel/preset-env']
                 }
             }

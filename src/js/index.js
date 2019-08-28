@@ -1,4 +1,4 @@
-import "../style/style.css";
+import  "../style/index.scss";
 var request = new XMLHttpRequest();
 
 document.addEventListener("DOMContentLoaded", function() {
