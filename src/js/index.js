@@ -1,10 +1,16 @@
 import  "../style/index.scss";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloReact from '../js/hellomessage';
+import HelloReact from './react/hellomessage';
+import DateComponent from './react/DateComponent';
+// import TimelineRequest from "./request"
 
 
 const request = new XMLHttpRequest();
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     TimelineRequest;
+// });
 
 document.addEventListener("DOMContentLoaded", function() {
     const infoContainer = document.getElementById("infoContainer");
@@ -14,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const reactContainer = document.getElementById('reactContainer');
     reactContainer.className = 'reactContainer';
-    ReactDOM.render(< HelloReact />, reactContainer);
     
     // set up overall doc stuff (font)
     const parentDiv = document.getElementById("parentDiv");
@@ -34,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // trigger GET request at page load
     getTimeline(timelineDiv, request);
 
+    // TimelineRequest();
+
     // "load" = transfer is complete, all data is now in response
     request.addEventListener("load", function() {
         // set up new div per tweet/post
@@ -43,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
     button.addEventListener("click", event => {
         event.preventDefault();
         getTimeline(timelineDiv, request);
+        // TimelineRequest();
     });
 });
 
@@ -75,6 +83,9 @@ function buildTimeline(response, timelineDiv) {
             let {createdAt, message, postID} = socialPost;
             //let postID = socialPost.postID;
             let {twitterHandle, name} = socialPost.socialUser;
+
+            ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
+
 
             postContainer.addEventListener("click", function() {
                 location.href = `http://twitter.com/${twitterHandle}/status/${postID}`;
