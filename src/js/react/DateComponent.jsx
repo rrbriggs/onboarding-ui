@@ -3,21 +3,30 @@ import React from 'react';
 // a span with the date for the date passed to it
 // e.g.: ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
 
-let postDate;
-
 class DateComponent extends React.Component {
     constructor(props) {
-        super();
- 
+        super(props);
+
         let epochDate = parseInt(props.date);
-        let readableDate = new Date(epochDate);
-        postDate = (readableDate.toLocaleString('default', {month: 'short'})) 
-                        + " " + readableDate.getDate();
+        let date = new Date(epochDate);
+
+        //using state instead of out of class var init
+        this.state = {
+            readableDate: date,
+            postDate: ''
+        }
+    }
+    
+    componentDidMount() {
+        this.setState({
+            postDate: (this.state.readableDate.toLocaleString('default', {month: 'short'})) 
+            + " " + this.state.readableDate.getDate()
+        })
     }
 
     render() {
         return (
-            <span className = 'date'>{postDate}</span>
+            <span className = 'date'>{this.state.postDate}</span>
         )
     }
 }
