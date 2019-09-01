@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import HelloReact from './react/hellomessage';
 // import DateComponent from './react/DateComponent';
 // import MessageContainer from './react/MessageContainer';
-import PhotoContaier from './react/PhotoContainer';
+import PhotoContainer from './react/PhotoContainer';
 
 
 const request = new XMLHttpRequest();
@@ -87,7 +87,7 @@ function buildTimeline(response, timelineDiv) {
 
             // ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
             // ReactDOM.render(< MessageContainer userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
-            ReactDOM.render(< PhotoContaier userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
+            ReactDOM.render(< PhotoContainer userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
 
 
             postContainer.addEventListener("click", function() {
