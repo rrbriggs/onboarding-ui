@@ -2,8 +2,8 @@ import  "../style/index.scss";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HelloReact from './react/hellomessage';
-import DateComponent from './react/DateComponent';
-// import TimelineRequest from "./request"
+// import DateComponent from './react/DateComponent';
+import MessageContainer from './react/MessageContainer';
 
 
 const request = new XMLHttpRequest();
@@ -84,7 +84,8 @@ function buildTimeline(response, timelineDiv) {
             //let postID = socialPost.postID;
             let {twitterHandle, name} = socialPost.socialUser;
 
-            ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
+            // ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
+            ReactDOM.render(< MessageContainer date={createdAt} statusMessage={message}/>, reactContainer);
 
 
             postContainer.addEventListener("click", function() {
