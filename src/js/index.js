@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import HelloReact from './react/hellomessage';
 // import DateComponent from './react/DateComponent';
-import MessageContainer from './react/MessageContainer';
+// import MessageContainer from './react/MessageContainer';
+import PhotoContaier from './react/PhotoContainer';
 
 
 const request = new XMLHttpRequest();
@@ -82,10 +83,11 @@ function buildTimeline(response, timelineDiv) {
         if(socialPost.socialUser != null && socialPost.message != null) {
             let {createdAt, message, postID} = socialPost;
             //let postID = socialPost.postID;
-            let {twitterHandle, name} = socialPost.socialUser;
+            let {twitterHandle, name, profileImageUrl} = socialPost.socialUser;
 
             // ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
-            ReactDOM.render(< MessageContainer date={createdAt} statusMessage={message}/>, reactContainer);
+            // ReactDOM.render(< MessageContainer userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
+            ReactDOM.render(< PhotoContaier userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
 
 
             postContainer.addEventListener("click", function() {
@@ -105,7 +107,7 @@ function buildTimeline(response, timelineDiv) {
             let photoScreenNameContainer = document.createElement("div");
             let photoHandleContainer = document.createElement("div");
             
-            photoElement.src = socialPost.socialUser.profileImageUrl;
+            photoElement.src = profileImageUrl;
             let photoScreenName = document.createTextNode(name);
             let photoHandle = document.createTextNode(twitterHandle);
 
