@@ -4,10 +4,18 @@ import ReactDOM from 'react-dom';
 import HelloReact from './react/hellomessage';
 // import DateComponent from './react/DateComponent';
 // import MessageContainer from './react/MessageContainer';
-import PostFactoryComponent from './react/PostFactoryComponent';
+// import PostFactoryComponent from './react/PostFactoryComponent';
+import timelineRequest from './react/TimelineRequest'
 
 
 const request = new XMLHttpRequest();
+
+
+let testStatus = (obj) => {
+    let blah = JSON.parse(obj);
+    console.log(blah);
+}
+let timereq = timelineRequest(testStatus);
 
 // document.addEventListener("DOMContentLoaded", function() {
 //     TimelineRequest;
@@ -45,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // "load" = transfer is complete, all data is now in response
     request.addEventListener("load", function() {
         // set up new div per tweet/post
+        // console.log(this.response);
         buildTimeline(this.response, timelineDiv);
     });
 
@@ -87,7 +96,7 @@ function buildTimeline(response, timelineDiv) {
 
             // ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
             // ReactDOM.render(< MessageContainer userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
-            ReactDOM.render(< PostFactoryComponent userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
+            // ReactDOM.render(< PostFactoryComponent userHandle={twitterHandle} screenName={name} date={createdAt} statusMessage={message} urlHandle={twitterHandle} urlID={postID} photoURL={profileImageUrl}/>, reactContainer);
 
 
             postContainer.addEventListener("click", function() {
