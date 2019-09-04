@@ -12,13 +12,15 @@ class PostFactoryComponent extends React.Component {
             screenName: this.props.screenName,
             userHandle: this.props.userHandle,
             date: this.props.date,
-            statusMessage: this.props.statusMessage
+            statusMessage: this.props.statusMessage,
+            postStyle: this.props.postStyle
         }
     }
 
     render() {
+        let styleClass = `${this.state.postStyle} postStyle`
         return(
-            <div className='oddPostBlock postStyle'>
+            <div className={styleClass}>
                 <PhotoContainer photoURL={this.state.photoURL} screenName={this.state.screenName} userHandle={this.state.userHandle} />
                 <MessageContainer date={this.state.date} statusMessage={this.state.statusMessage} />
             </div>

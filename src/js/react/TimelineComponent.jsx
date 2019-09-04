@@ -1,45 +1,43 @@
 import React from 'react';
-import TimelineRequest from './TimelineRequest';
+import timelineRequest from './TimelineRequest';
+import PostFactoryComponent from './PostFactoryComponent';
 
 class TimelineComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        let timelineReq = new TimelineRequest();
-        // let timelinebs = JSON.parse(timelineReq);
-        // console.log(`***timelineReq ::::: ${timelineReq}`)
-        // console.log(`***timelineReq[0][0] ::::: ${timelineReq[0]}`)
-
-        // try {
-        //     if (timelineReq != null) {
-
-        //         () => {
-        //             for(let x = 0; x < timelineReq.length; x++) {
-        //                 let socialPost = timelineReq[x];
-        //                 console.log(socialPost.message);
-        //             }
-        //         };
-        //     }
-        //     else {
-        //         // todo: handle if TimelineRequest is null
-        //         consosle.log(`TimelineRequest is null`);
-        //     }
-        // } catch (e) {
-        //     console.log(`**Error from timelineReq madness: ${e}`)
-        // }
-        
-
         this.state = {
-
+            data: [],
         }
+
+        this.parseDataJson = (obj) => {
+            let jsonData = JSON.parse(obj);
+            this.setState({
+                data: jsonData
+            });
+        }
+        
+        this.timereq = timelineRequest(this.parseDataJson);
+        
+    }
+
+    componentDidMount() {
+        timelineRequest(this.parseDataJson);
     }
 
     render() {
-        
-        return(
+        let count = 0;
+        let timeline = (
+                this.state.data.map((post) => {
+                    let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
+                    count++;
+                    return <PostFactoryComponent photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity}/>
+                })
+        ); 
+        return (
            <div className='timelineDiv'>
-                test
-            </div> 
+               {timeline}
+           </div>
         )
         
     }
