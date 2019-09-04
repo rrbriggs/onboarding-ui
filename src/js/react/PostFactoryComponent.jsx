@@ -2,7 +2,6 @@ import React from 'react';
 import PhotoContainer from './PhotoContainer';
 import MessageContainer from './MessageContainer';
 
-// todo: make oddPostBlock set programmatically
 class PostFactoryComponent extends React.Component {
     constructor(props) {
         super(props);

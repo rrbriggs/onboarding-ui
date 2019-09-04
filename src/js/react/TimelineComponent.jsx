@@ -18,7 +18,10 @@ class TimelineComponent extends React.Component {
         }
         
         this.timereq = timelineRequest(this.parseDataJson);
-        
+
+        this.buttonClick = () => {
+            timelineRequest(this.parseDataJson);
+        }
     }
 
     componentDidMount() {
@@ -35,9 +38,16 @@ class TimelineComponent extends React.Component {
                 })
         ); 
         return (
-           <div className='timelineDiv'>
-               {timeline}
-           </div>
+            <div className = 'master'>
+                <div className='title'>Lab for Briggs</div>
+                <div className='infoContainer'>
+                    <button id="getTimeline Button" onClick={this.buttonClick} className='button'>Get Timeline</button>
+                </div>
+                <div className='timelineDiv'>
+                    {timeline}
+                </div> 
+            </div>
+           
         )
         
     }

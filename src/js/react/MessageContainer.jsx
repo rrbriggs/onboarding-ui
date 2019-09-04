@@ -2,8 +2,6 @@ import React from 'react';
 import DateComponent from './DateComponent';
 import MessageComponent from './MessageComponent'
 
-// what if I consolidate other components to here?
-
 class MessageContainer extends React.Component {
     constructor(props) {
         super(props);

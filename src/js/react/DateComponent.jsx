@@ -1,7 +1,4 @@
 import React from 'react';
-// this is working in the sense that it is returning
-// a span with the date for the date passed to it
-// e.g.: ReactDOM.render(< DateComponent date={createdAt}/>, reactContainer);
 
 class DateComponent extends React.Component {
     constructor(props) {
