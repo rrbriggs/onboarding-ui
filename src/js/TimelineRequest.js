@@ -4,11 +4,11 @@ export default function timelineRequest(callback) {
 
     if(timelineDiv) {
         timelineDiv.innerHTML = null;
+        timelineDiv.className = "timelineDiv";
     }
 
     request.addEventListener("load", () => {
         callback(request.response);
-        timelineDiv.className = "timelineDiv";
         
     });
 

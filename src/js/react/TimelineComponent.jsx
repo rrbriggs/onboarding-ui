@@ -47,8 +47,7 @@ class TimelineComponent extends React.Component {
         ); 
 
         let timelineDiv = this.refs.timelineDiv;
-        timelineDiv.nodeValue = "";
-        <div ref={timelineDiv} className="timelineDiv">{timeline}</div>
+        return <div ref={timelineDiv}>{timeline}</div>;
     }
 
     componentDidMount() {
