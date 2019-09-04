@@ -63,7 +63,9 @@ $font-stack: serif;
             }
 
             .photoContainer {
+                padding: 3% 0%;
                 width: 100%;
+                min-width: 105px;
                 max-width: 145px;
                 overflow: hidden;
                 display: inline-block;
@@ -72,7 +74,6 @@ $font-stack: serif;
                 text-align: center;
 
                 .image {
-                    padding: 8px;
                     border-radius: 50%;
                     margin: auto;
                     overflow: hidden;
