@@ -2,8 +2,14 @@ export default function timelineRequest(callback) {
     const request = new XMLHttpRequest();
     let timelineDiv = document.getElementById("timelineDiv"); 
 
+    if(timelineDiv) {
+        timelineDiv.innerHTML = null;
+    }
+
     request.addEventListener("load", () => {
         callback(request.response);
+        timelineDiv.className = "timelineDiv";
+        
     });
 
     request.onerror = () => {
