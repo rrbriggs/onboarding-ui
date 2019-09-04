@@ -38,7 +38,7 @@ class TimelineComponent extends React.Component {
                     if(post != "") {
                         let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
                         count++;
-                        return <PostFactoryComponent photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity}/>
+                        return <PostFactoryComponent key={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity}/>
                     }
                     
                 })
