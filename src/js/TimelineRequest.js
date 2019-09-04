@@ -1,5 +1,6 @@
 export default function timelineRequest(callback) {
     const request = new XMLHttpRequest();
+    let timelineDiv = document.getElementById("timelineDiv"); 
 
     request.addEventListener("load", () => {
         callback(request.response);
