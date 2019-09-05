@@ -18,24 +18,19 @@ class TimelineComponent extends React.Component {
 
         this.parseDataJson = (obj) => {
             if (obj != false) {
-                if (obj === prevData) {
-                    console.log("jsonData == state.data")
-                }
-                else{
+                if (obj != prevData) {
                     prevData = obj;
                     let jsonData = JSON.parse(obj);
-                    console.log("not ==")
                     this.setState({
                         data: jsonData
                     }); 
                 }
-                
-            }
-            else {
+            } else {
+                prevData = "";
                 console.log("else")
                 this.setState({
                     data: null
-                })
+                });
             }
         }
     }
@@ -45,7 +40,6 @@ class TimelineComponent extends React.Component {
     }
 
     buttonClick () {
-        console.log("button pressed");
         timelineRequest(this.parseDataJson);
     }
 
@@ -66,9 +60,10 @@ class TimelineComponent extends React.Component {
                     }
                 })
             );
+        } else {
+            timeline = <div className='error'>No data currently available.</div>
         }
          
-        
         return (
             <ErrorBoundary data={this.state.data}>
                 <div className = 'master'>
@@ -81,7 +76,7 @@ class TimelineComponent extends React.Component {
                     </div> 
                 </div>
             </ErrorBoundary>
-        )
+        );
         
     }
 }

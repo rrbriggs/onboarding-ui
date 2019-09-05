@@ -1,11 +1,5 @@
 export default function timelineRequest(callback) {
     const request = new XMLHttpRequest();
-    let timelineDiv = document.getElementById("timelineDiv"); 
-
-    if(timelineDiv) {
-        timelineDiv.innerHTML = null;
-        timelineDiv.className = "timelineDiv";
-    }
 
     request.addEventListener("load", () => {
         callback(request.response);
@@ -14,9 +8,6 @@ export default function timelineRequest(callback) {
 
     request.onerror = () => {
         if(request.status == 0) {
-            timelineDiv.innerHTML = "";
-            timelineDiv.className = "error";
-            timelineDiv.append("No data currently available.");
             callback(false);
         }
     };
