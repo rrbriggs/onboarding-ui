@@ -8,7 +8,8 @@ class TimelineComponent extends React.Component {
         super(props);
 
         this.buttonClick = this.buttonClick.bind(this);
-        this.timelineDiv = React.createRef();
+
+        let prevData = null;
 
         this.state = {
             data: [],
@@ -16,38 +17,36 @@ class TimelineComponent extends React.Component {
         }
 
         this.parseDataJson = (obj) => {
-            let jsonData = JSON.parse(obj);
-            this.setState({
-                data: jsonData
-            });
+            if (obj != false) {
+                if (obj === prevData) {
+                    console.log("jsonData == state.data")
+                }
+                else{
+                    prevData = obj;
+                    let jsonData = JSON.parse(obj);
+                    console.log("not ==")
+                    this.setState({
+                        data: jsonData
+                    }); 
+                }
+                
+            }
+            else {
+                console.log("else")
+                this.setState({
+                    data: null
+                })
+            }
         }
-        
-        this.timereq = timelineRequest(this.parseDataJson);
-
-        
     }
 
     static getDerivedStateFromError(error) {
-
         return {hasError: true};
     }
 
     buttonClick () {
+        console.log("button pressed");
         timelineRequest(this.parseDataJson);
-
-        let count = 0;
-        let timeline = (
-            this.state.data.map((post) => {
-                if(post != "") {
-                    let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
-                    count++;
-                    return <PostFactoryComponent key={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity}/>
-                }
-            })
-        ); 
-
-        let timelineDiv = this.refs.timelineDiv;
-        return <div ref={timelineDiv}>{timeline}</div>;
     }
 
     componentDidMount() {
@@ -55,17 +54,20 @@ class TimelineComponent extends React.Component {
     }
 
     render() {
-        
         let count = 0;
-        let timeline = (
-            this.state.data.map((post) => {
-                if(post != "") {
-                    let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
-                    count++;
-                    return <PostFactoryComponent key={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity}/>
-                }
-            })
-        ); 
+        let timeline;
+        if (this.state.data != null) {
+            timeline = (
+                this.state.data.map((post) => {
+                    if(post != "") {
+                        let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
+                        count++;
+                        return <PostFactoryComponent key={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity}/>
+                    }
+                })
+            );
+        }
+         
         
         return (
             <ErrorBoundary data={this.state.data}>

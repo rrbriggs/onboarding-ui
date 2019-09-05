@@ -17,6 +17,7 @@ export default function timelineRequest(callback) {
             timelineDiv.innerHTML = "";
             timelineDiv.className = "error";
             timelineDiv.append("No data currently available.");
+            callback(false);
         }
     };
 
