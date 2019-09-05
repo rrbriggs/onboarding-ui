@@ -8,7 +8,7 @@ class TimelineComponent extends React.Component {
         super(props);
 
         this.buttonClick = this.buttonClick.bind(this);
-        //this.timelineDiv = React.createRef();
+        this.timelineDiv = React.createRef();
 
         this.state = {
             data: [],
