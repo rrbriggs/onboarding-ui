@@ -33,11 +33,11 @@ $font-stack: serif;
         margin: 0px 32px 32px;
         border: 1px groove #686868;
 
-        .oddPostBlock {
+        .evenPostBlock {
             background-color: #e8f5fd;
         }
         
-        .evenPostBlock {
+        .oddPostBlock {
             background-color: #e9e9e9;
         }
 
@@ -63,7 +63,9 @@ $font-stack: serif;
             }
 
             .photoContainer {
+                padding: 12px 0%;
                 width: 100%;
+                min-width: 105px;
                 max-width: 145px;
                 overflow: hidden;
                 display: inline-block;
