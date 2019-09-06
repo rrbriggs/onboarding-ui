@@ -10,7 +10,7 @@ class TimelineComponent extends React.Component {
 
         let prevData = null;
 
-        this.state = {
+        this.state = { 
             data: [],
             hasError: false
         }
