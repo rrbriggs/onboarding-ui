@@ -5,18 +5,13 @@ import MessageComponent from './MessageComponent'
 class MessageContainer extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            date: this.props.date,
-            statusMessage: this.props.statusMessage
-        }
     }
 
     render() {
         return(
             <div className='messageContainer'>
-                <DateComponent date={this.state.date} />
-                <MessageComponent statusMessage={this.state.statusMessage} />
+                <DateComponent date={this.props.date} />
+                <MessageComponent statusMessage={this.props.statusMessage} />
             </div>
         )
     }
