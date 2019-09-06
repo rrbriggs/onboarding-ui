@@ -5,26 +5,15 @@ class DateComponent extends React.Component {
         super(props);
 
         let epochDate = parseInt(props.date);
-        let date = new Date(epochDate);
-
-        //using state instead of out of class var init
-        this.state = {
-            readableDate: date,
-            postDate: ''
-        }
-    }
-    
-    componentDidMount() {
-        this.setState({
-            postDate: (this.state.readableDate.toLocaleString('default', {month: 'short'})) 
-            + " " + this.state.readableDate.getDate()
-        })
+        this.date = new Date(epochDate);
+        this.postDate = this.date.toLocaleString('default', {month: 'short'})
+        + " " + this.date.getDate();   
     }
 
     render() {
         return (
-            <span className = 'date'>{this.state.postDate}</span>
-        )
+            <span className = 'date'>{this.postDate}</span>
+        );
     }
 }
 

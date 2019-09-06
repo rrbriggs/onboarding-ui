@@ -5,24 +5,14 @@ import MessageContainer from './MessageContainer';
 class PostFactoryComponent extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            photoURL: this.props.photoURL,
-            screenName: this.props.screenName,
-            userHandle: this.props.userHandle,
-            date: this.props.date,
-            statusMessage: this.props.statusMessage,
-            postStyle: this.props.postStyle,
-            postID: this.props.postID
-        }
     }
 
     render() {
-        let styleClass = `${this.state.postStyle} postStyle`
+        let styleClass = `${this.props.postStyle} postStyle`
         return(
-            <div className={styleClass} onClick={() => document.location.href = `http://twitter.com/${this.state.userHandle}/status/${this.state.postID}`}>
-                <PhotoContainer photoURL={this.state.photoURL} screenName={this.state.screenName} userHandle={this.state.userHandle} />
-                <MessageContainer date={this.state.date} statusMessage={this.state.statusMessage} />
+            <div className={styleClass} onClick={() => document.location.href = `http://twitter.com/${this.props.userHandle}/status/${this.props.postID}`}>
+                <PhotoContainer photoURL={this.props.photoURL} screenName={this.props.screenName} userHandle={this.props.userHandle} />
+                <MessageContainer date={this.props.date} statusMessage={this.props.statusMessage} />
             </div>
         )
     }
