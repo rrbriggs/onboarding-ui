@@ -1,7 +1,6 @@
 import React from 'react';
 import timelineRequest from '../TimelineRequest';
 import PostFactoryComponent from './PostFactoryComponent';
-import ErrorBoundary from './ErrorBoundary'
 
 class TimelineComponent extends React.Component {
     constructor(props) {
@@ -65,7 +64,6 @@ class TimelineComponent extends React.Component {
         }
          
         return (
-
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
                 <div className='infoContainer'>
@@ -75,9 +73,7 @@ class TimelineComponent extends React.Component {
                     {timeline}
                 </div> 
             </div>
-
         );
-        
     }
 }
 
