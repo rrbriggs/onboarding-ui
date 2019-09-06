@@ -65,17 +65,17 @@ class TimelineComponent extends React.Component {
         }
          
         return (
-            <ErrorBoundary data={this.state.data}>
-                <div className = 'master'>
-                    <div className='title'>Lab for Briggs</div>
-                    <div className='infoContainer'>
-                        <button id="getTimeline Button" onClick={this.buttonClick} className='button'>Get Timeline</button>
-                    </div>
-                    <div id='timelineDiv' className='timelineDiv'>
-                        {timeline}
-                    </div> 
+
+            <div className = 'master'>
+                <div className='title'>Lab for Briggs</div>
+                <div className='infoContainer'>
+                    <button id="getTimeline Button" onClick={this.buttonClick} className='button'>Get Timeline</button>
                 </div>
-            </ErrorBoundary>
+                <div id='timelineDiv' className='timelineDiv'>
+                    {timeline}
+                </div> 
+            </div>
+
         );
         
     }
