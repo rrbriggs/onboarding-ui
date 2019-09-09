@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "watch": "webpack -d --watch",
     "start": "npm run watch & npm run dev",
     "dev": "webpack-dev-server",
@@ -26,6 +26,15 @@
     "url": "https://github.com/rrbriggs/onboarding-ui/issues"
   },
   "homepage": "https://github.com/rrbriggs/onboarding-ui#readme",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/jspm_packages"
+    ],
+    "unmockedModulePathPatterns": [
+      "./node_modules/react"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
