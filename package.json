@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/rrbriggs/onboarding-ui#readme",
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
     ],
