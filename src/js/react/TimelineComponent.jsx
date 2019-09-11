@@ -26,7 +26,6 @@ class TimelineComponent extends React.Component {
                 }
             } else {
                 prevData = "";
-                console.log("else")
                 this.setState({
                     data: null
                 });
