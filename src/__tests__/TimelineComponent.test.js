@@ -65,4 +65,4 @@ describe('test TimelineComponent', () => {
 
         expect(timelineComponent.containsMatchingElement([expectedComponentReturn])).toBeTruthy();
     });
-})
+});
