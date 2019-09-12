@@ -25,9 +25,8 @@ describe('test PostFactoryComponent', () => {
     });
 
     it('render contains components', () => {
-        expect(postFactoryComponent.find('.postStyle')).toBeTruthy();
-        expect(postFactoryComponent.childAt(0)).toContainEqual(<PhotoContainer />);
-        expect(postFactoryComponent.childAt(1)).toContainEqual(<MessageContainer />);
+        expect(postFactoryComponent.contains(<PhotoContainer />)).toBeTruthy();
+        expect(postFactoryComponent.contains(<MessageContainer />)).toBeTruthy();
     });
 
     it('div clicked will error due to navigating away from dom', () => {

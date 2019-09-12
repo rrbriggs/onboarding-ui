@@ -46,12 +46,6 @@ describe('test TimelineComponent', () => {
             }
         }
 
-        let expectedComponentReturn = (
-            <div id='timelineDiv' className='timelineDiv'>
-                <PostFactoryComponent key={data.postID + 1} postID={data.postID} photoURL={data.socialUser.profileImageUrl} screenName={data.socialUser.name} userHandle={data.socialUser.twitterHandle} date={data.createdAt} statusMessage={data.message} postStyle={data.postStyle}/>
-            </div>
-        );
-
         timelineRequest.mockImplementation(() => {
             timelineComponent.instance()
                     .parseDataJson(JSON.stringify([data, data, data, data]));
@@ -63,6 +57,6 @@ describe('test TimelineComponent', () => {
 
         console.log(timelineComponent);
 
-        expect(timelineComponent.containsMatchingElement([expectedComponentReturn])).toBeTruthy();
+        expect(timelineComponent.containsMatchingElement(<PostFactoryComponent key={data.postID + 1} postID={data.postID} photoURL={data.socialUser.profileImageUrl} screenName={data.socialUser.name} userHandle={data.socialUser.twitterHandle} date={data.createdAt} statusMessage={data.message} postStyle={data.postStyle}/>)).toBeTruthy();
     });
 });

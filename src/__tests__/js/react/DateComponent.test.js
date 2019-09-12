@@ -19,7 +19,6 @@ describe('test DateComponent', () => {
     });
 
     it('render returns date component', () => {
-        expect(dateComponent.find('.date')).toBeTruthy();
-        expect(dateComponent).toContainEqual(<span className="date">{postDate}</span>);
+        expect(dateComponent.contains(<span className="date">{postDate}</span>)).toBeTruthy();
     });
 });
