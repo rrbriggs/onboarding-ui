@@ -14,11 +14,7 @@ describe('test DateComponent', () => {
 
     const dateComponent = shallow(<DateComponent date={data.ogDate} />);
 
-    it('renders without crashing', () => {
-        dateComponent;
-    });
-
     it('render returns date component', () => {
-        expect(dateComponent.contains(<span className="date">{postDate}</span>)).toBeTruthy();
+        expect(dateComponent.containsMatchingElement(<span>{postDate}</span>)).toBeTruthy();
     });
 });

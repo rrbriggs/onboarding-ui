@@ -10,14 +10,10 @@ describe('test MessageContainer', () => {
         statusMessage: "message"
     }
 
-    const messageContainer = shallow(< MessageContainer date={data.date} statusMessage={data.statusMessage} />);
-
-    it('renders without crashing', () => {
-        messageContainer;
-    });
+    const messageContainer = shallow(< MessageContainer />);
 
     it('render contains components', () => {
-        expect(messageContainer.contains(<DateComponent date={data.date}></DateComponent>)).toBeTruthy();
-        expect(messageContainer.contains(<MessageComponent statusMessage={data.statusMessage} />)).toBeTruthy();
+        expect(messageContainer.containsMatchingElement(<DateComponent />)).toBeTruthy();
+        expect(messageContainer.containsMatchingElement(<MessageComponent />)).toBeTruthy();
     })
 });

@@ -9,10 +9,6 @@ describe('test MessageComponent', () => {
 
     const messageComponent = shallow(<MessageComponent statusMessage={data.statusMessage} />);
 
-    it('renders without crashing', () => {
-        messageComponent;
-    });
-
     it('renders components', () => {
         expect(messageComponent.contains(data.statusMessage)).toBeTruthy();
     });

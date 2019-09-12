@@ -16,8 +16,8 @@ describe('test PhotoContainer', () => {
     });
 
     it('renders components', () => {
-        expect(photoContainer.contains(<img src={data.photoURL} className='image' />)).toBeTruthy();
-        expect(photoContainer.contains(<div className='screenName'>{data.screenName}</div>)).toBeTruthy();
-        expect(photoContainer.contains(<div className='handle'>{data.userHandle}</div>)).toBeTruthy();
+        expect(photoContainer.containsMatchingElement(<img src={data.photoURL} />)).toBeTruthy();
+        expect(photoContainer.containsMatchingElement(<div>{data.screenName}</div>)).toBeTruthy();
+        expect(photoContainer.containsMatchingElement(<div>{data.userHandle}</div>)).toBeTruthy();
     });
 });
