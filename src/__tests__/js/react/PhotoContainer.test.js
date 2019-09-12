@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import PhotoContainer from '../js/react/PhotoContainer';
+import PhotoContainer from '../../../js/react/PhotoContainer';
 
 describe('test PhotoContainer', () => {
     const data = {

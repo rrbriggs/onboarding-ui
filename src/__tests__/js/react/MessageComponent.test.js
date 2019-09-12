@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import MessageComponent from '../js/react/MessageComponent';
+import MessageComponent from '../../../js/react/MessageComponent';
 
 describe('test MessageComponent', () => {
     const data = {

@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import DateComponent from '../js/react/DateComponent';
+import DateComponent from '../../../js/react/DateComponent';
 
 describe('test DateComponent', () => {
     const data = {

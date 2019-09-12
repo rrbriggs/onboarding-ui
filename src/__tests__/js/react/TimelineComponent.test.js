@@ -1,10 +1,10 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import TimelineComponent from '../js/react/TimelineComponent';
-import timelineRequest from '../js/TimelineRequest';
-import PostFactoryComponent from '../js/react/PostFactoryComponent';
+import TimelineComponent from '../../../js/react/TimelineComponent';
+import timelineRequest from '../../../js/TimelineRequest';
+import PostFactoryComponent from '../../../js/react/PostFactoryComponent';
 
-jest.mock('../js/TimelineRequest');
+jest.mock('../../../js/TimelineRequest');
 
 
 
