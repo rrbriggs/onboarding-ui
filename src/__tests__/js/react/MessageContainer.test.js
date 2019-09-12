@@ -17,8 +17,8 @@ describe('test MessageContainer', () => {
     });
 
     it('render contains components', () => {
-        expect(messageContainer.find('.photoContainer')).toBeTruthy();
-        expect(messageContainer.childAt(0)).toContainEqual(<DateComponent date={data.date} />);
-        expect(messageContainer.childAt(1)).toContainEqual(<MessageComponent statusMessage={data.statusMessage} />);
+        console.log(messageContainer.debug());
+        expect(messageContainer.contains(<DateComponent date={data.date}></DateComponent>)).toBeTruthy();
+        expect(messageContainer.contains(<MessageComponent statusMessage={data.statusMessage} />)).toBeTruthy();
     })
 });
