@@ -14,8 +14,6 @@ describe('test DateComponent', () => {
 
     const dateComponent = shallow(<DateComponent date={data.ogDate} />);
 
-    // dateComponent.setProps({date: data.date})
-
     it('renders without crashing', () => {
         dateComponent;
     });
