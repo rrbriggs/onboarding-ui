@@ -14,7 +14,6 @@ describe('test MessageComponent', () => {
     });
 
     it('renders components', () => {
-        expect(messageComponent.find('.message')).toBeTruthy();
-        expect(messageComponent).toContainEqual(<span className = 'message'>{data.statusMessage}</span>);
+        expect(messageComponent.contains(data.statusMessage)).toBeTruthy();
     });
 });
