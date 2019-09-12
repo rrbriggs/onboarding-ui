@@ -37,29 +37,4 @@ describe('test PostFactoryComponent', () => {
                 .simulate("click"))
             .toBeTruthy();
     });
-
-    // it('returns div and component', () => {
-        
-
-    //     let expectedComponentReturn = (
-    //         <div className={data.postStyle + " postStyle"} onClick={() => document.location.href = `http://twitter.com/${data.handle}/status/${data.postID}`}>
-    //             <PhotoContainer />
-    //             <MessageContainer />
-    //         </div>
-    //     );
-
-    //     expect(postFactoryComponent.getElement()).to(<PhotoContainer />);
-    // });
-
-    // todo: this needs an expect
-    // it('checks onClick of the div', () => {
-        
-
-    //     expect(() => {
-    //         postFactoryComponent
-    //         .find('.postStyle')
-    //         .
-    //     }).toHaveBeenCalledWith(document.location.href);
-    // });
-
 });
