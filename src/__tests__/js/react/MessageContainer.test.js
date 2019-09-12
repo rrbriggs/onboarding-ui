@@ -17,7 +17,6 @@ describe('test MessageContainer', () => {
     });
 
     it('render contains components', () => {
-        console.log(messageContainer.debug());
         expect(messageContainer.contains(<DateComponent date={data.date}></DateComponent>)).toBeTruthy();
         expect(messageContainer.contains(<MessageComponent statusMessage={data.statusMessage} />)).toBeTruthy();
     })
