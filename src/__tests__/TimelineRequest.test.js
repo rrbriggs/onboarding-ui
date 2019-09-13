@@ -1,7 +1,7 @@
 import timelineRequest from '../js/TimelineRequest';
 
 describe('testing timelineRequest', () => {
-    it('does the thing', (done) => {
+    it('returns callback', (done) => {
         let callback = (data) => {
             expect(data).toBeFalsy();
             done();
