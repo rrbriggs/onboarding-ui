@@ -9,7 +9,7 @@ describe('test MessageComponent', () => {
 
     const messageComponent = shallow(<MessageComponent statusMessage={data.statusMessage} />);
 
-    it('renders components', () => {
+    it('returns the message sent', () => {
         expect(messageComponent.contains(data.statusMessage)).toBeTruthy();
     });
 });

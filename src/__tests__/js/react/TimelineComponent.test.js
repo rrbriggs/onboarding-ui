@@ -16,10 +16,6 @@ describe('test TimelineComponent', () => {
         timelineComponent.instance().parseDataJson("");
     });
 
-    it('renders without crashing', () => {
-        timelineComponent;
-    });
-
     it('timelineRequest returns callback parseDataJson', () => {
         expect(timelineComponent.instance().parseDataJson("")).toBeFalsy();
         expect(timelineRequest).toHaveBeenCalledWith(timelineComponent.instance().parseDataJson); 
@@ -55,8 +51,6 @@ describe('test TimelineComponent', () => {
             .find('button')
             .simulate("click");
 
-        console.log(timelineComponent);
-
-        expect(timelineComponent.containsMatchingElement(<PostFactoryComponent key={data.postID + 1} postID={data.postID} photoURL={data.socialUser.profileImageUrl} screenName={data.socialUser.name} userHandle={data.socialUser.twitterHandle} date={data.createdAt} statusMessage={data.message} postStyle={data.postStyle}/>)).toBeTruthy();
+        expect(timelineComponent.containsMatchingElement(<PostFactoryComponent />)).toBeTruthy();
     });
 });
