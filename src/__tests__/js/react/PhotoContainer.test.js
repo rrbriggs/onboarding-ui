@@ -13,7 +13,7 @@ describe('test PhotoContainer', () => {
 
     it('renders components', () => {
         expect(photoContainer.find('img').prop('src')).toBe(data.photoURL);
-        expect(photoContainer.containsMatchingElement(<div>{data.screenName}</div>)).toBeTruthy();
-        expect(photoContainer.containsMatchingElement(<div>{data.userHandle}</div>)).toBeTruthy();
+        expect(photoContainer.containsMatchingElement(data.screenName)).toBeTruthy();
+        expect(photoContainer.containsMatchingElement(data.userHandle)).toBeTruthy();
     });
 });
