@@ -6,6 +6,9 @@ import MessageContainer from '../../../js/react/MessageContainer';
 
 describe('test PostFactoryComponent', () => {
 
+    let handle = "handle";
+    let ID = "postID"
+
     const postFactoryComponent = shallow(< PostFactoryComponent />);
 
     it('render contains components', () => {
@@ -13,11 +16,10 @@ describe('test PostFactoryComponent', () => {
         expect(postFactoryComponent.contains(<MessageContainer />)).toBeTruthy();
     });
 
-    it('div clicked will error due to navigating away from dom', () => {
-        expect(
-            postFactoryComponent
-                .find('.postStyle')
-                .simulate("click"))
-            .toBeTruthy();
+    it('tests OnClick, should error when attempting to nav away', () => {
+        const spy = jest.spyOn(postFactoryComponent.instance(), 'handleClick');
+        postFactoryComponent.instance().forceUpdate();
+        postFactoryComponent.find('.postStyle').simulate('click');
+        expect(spy).toBeCalled();
     });
 });
