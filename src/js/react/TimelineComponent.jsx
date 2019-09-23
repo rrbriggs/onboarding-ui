@@ -26,16 +26,11 @@ class TimelineComponent extends React.Component {
                 }
             } else {
                 prevData = "";
-                console.log("else")
                 this.setState({
                     data: null
                 });
             }
         }
-    }
-
-    static getDerivedStateFromError(error) {
-        return {hasError: true};
     }
 
     buttonClick () {
@@ -67,7 +62,7 @@ class TimelineComponent extends React.Component {
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
                 <div className='infoContainer'>
-                    <button id="getTimeline Button" onClick={this.buttonClick} className='button'>Get Timeline</button>
+                    <button id="getTimelineButton" onClick={this.buttonClick} className='button'>Get Timeline</button>
                 </div>
                 <div id='timelineDiv' className='timelineDiv'>
                     {timeline}
