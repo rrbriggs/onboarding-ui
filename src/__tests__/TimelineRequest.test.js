@@ -9,5 +9,3 @@ describe('testing timelineRequest', () => {
         timelineRequest(callback);
     });
 });
-
-
