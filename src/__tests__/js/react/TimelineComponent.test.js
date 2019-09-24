@@ -17,8 +17,7 @@ describe('test TimelineComponent', () => {
     });
 
     it('timelineRequest returns callback parseDataJson', () => {
-        expect(timelineComponent.instance().parseDataJson("")).toBeFalsy();
-        expect(timelineRequest).toHaveBeenCalledWith(timelineComponent.instance().parseDataJson); 
+        expect(timelineComponent.instance().parseDataJson("")).toBeFalsy(); 
     });
 
     it('button click executes function that calls timelineRequest with parseDataJson as callback', () => {
