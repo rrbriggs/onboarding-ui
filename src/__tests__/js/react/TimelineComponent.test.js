@@ -20,6 +20,14 @@ describe('test TimelineComponent', () => {
         expect(timelineComponent.instance().parseDataJson("")).toBeFalsy(); 
     });
 
+    it('checks for error case', () => {
+        timelineRequest.mockImplementation(() => {
+            timelineComponent.instance().parseDataJson(false);
+        });
+
+        expect(timelineComponent.contains('No data currently available.')).toBeTruthy();
+    });
+
     it('button click executes function that calls timelineRequest with parseDataJson as callback', () => {
         timelineComponent
             .find('button')
