@@ -1,5 +1,5 @@
 import React from 'react';
-import timelineRequest from '../TimelineRequest';
+import timelineReq from '../TimelineReq';
 import PostFactoryComponent from './PostFactoryComponent';
 
 class TimelineComponent extends React.Component {
@@ -33,12 +33,21 @@ class TimelineComponent extends React.Component {
         }
     }
 
+    requestTimeline() {
+        const timelinePromise = new timelineReq;
+        timelinePromise.then((req) => {
+            this.parseDataJson(req);
+        }).catch((req) => {
+            this.parseDataJson(req);
+        });
+    }
+
     buttonClick () {
-        timelineRequest(this.parseDataJson);
+        this.requestTimeline();
     }
 
     componentDidMount() {
-        timelineRequest(this.parseDataJson);
+        this.requestTimeline();
     }
 
     render() {
