@@ -33,13 +33,20 @@ class TimelineComponent extends React.Component {
         }
     }
 
-    requestTimeline() {
-        const timelinePromise = new timelineReq;
-        timelinePromise.then((req) => {
-            this.parseDataJson(req);
-        }).catch((req) => {
-            this.parseDataJson(req);
-        });
+    async requestTimeline() {
+        try {
+            const data = await timelineReq();
+            this.parseDataJson(data);
+        } catch {
+            this.parseDataJson(false);
+        }
+
+        // const timelinePromise = new timelineReq;
+        // timelinePromise.then((req) => {
+        //     this.parseDataJson(req);
+        // }).catch((req) => {
+        //     this.parseDataJson(req);
+        // });
     }
 
     buttonClick () {
