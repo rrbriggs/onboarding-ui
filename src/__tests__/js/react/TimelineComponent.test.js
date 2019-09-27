@@ -10,12 +10,6 @@ jest.mock('../../../js/TimelineReq');
 
 describe('test TimelineComponent', () => {
 
-    // timelineReq.mockImplementation(() => {
-    //     return new Promise((resolve, reject) => {
-    //         reject(false);
-    //     })
-    // });
-
     timelineReq.mockResolvedValue(false);
 
     const timelineComponent = shallow(< TimelineComponent />);
