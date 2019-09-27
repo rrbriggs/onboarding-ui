@@ -2,12 +2,6 @@
   "name": "onboarding-ui",
   "version": "1.0.0",
   "description": "## how to run: Install Node.js version `v10.16.2` To check your node version, in terminal enter `node -v`",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  },
   "scripts": {
     "test": "jest",
     "watch": "webpack -d --watch",

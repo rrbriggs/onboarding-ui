@@ -1,39 +1,30 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import TimelineComponent from '../../../js/react/TimelineComponent';
-import timelineRequest from '../../../js/TimelineRequest';
+import timelineReq from '../../../js/TimelineReq';
 import PostFactoryComponent from '../../../js/react/PostFactoryComponent';
 
-jest.mock('../../../js/TimelineRequest');
+jest.mock('../../../js/TimelineReq');
 
 
 
 describe('test TimelineComponent', () => {
 
+    timelineReq.mockResolvedValue(false);
+
     const timelineComponent = shallow(< TimelineComponent />);
 
-    timelineRequest.mockImplementation(() => {
-        timelineComponent.instance().parseDataJson("");
-    });
-
-    it('timelineRequest returns callback parseDataJson', () => {
-        expect(timelineComponent.instance().parseDataJson("")).toBeFalsy();
-        expect(timelineRequest).toHaveBeenCalledWith(timelineComponent.instance().parseDataJson); 
-    });
-
     it('checks for error case', () => {
-        timelineRequest.mockImplementation(() => {
-            timelineComponent.instance().parseDataJson(false);
-        });
-
         expect(timelineComponent.contains('No data currently available.')).toBeTruthy();
     });
 
-    it('button click executes function that calls timelineRequest with parseDataJson as callback', () => {
+    it('button click executes function that calls timelineReq with parseDataJson as callback', () => {
         timelineComponent
             .find('button')
             .simulate("click");
-        expect(timelineRequest).toHaveBeenCalledWith(timelineComponent.instance().parseDataJson);
+
+        //timelineReq is already called once one mount
+        expect(timelineReq).toHaveBeenCalledTimes(2);
     });
 
     it('button renders data from PostFactoryComponent', () => {
@@ -50,7 +41,7 @@ describe('test TimelineComponent', () => {
             }
         }
 
-        timelineRequest.mockImplementation(() => {
+        timelineReq.mockImplementation(() => {
             timelineComponent.instance()
                     .parseDataJson(JSON.stringify([data, data, data, data]));
         });
