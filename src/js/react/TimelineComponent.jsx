@@ -10,26 +10,38 @@ class TimelineComponent extends React.Component {
         this.buttonClick = this.buttonClick.bind(this);
 
         let prevData = null;
+        let prevUserData = null;
 
         this.state = { 
             data: [],
+            userData: [],
             hasError: false
         }
 
-        this.parseDataJson = (obj) => {
-            if (obj != false) {
-                if (obj != prevData) {
-                    prevData = obj;
+        this.parseDataJson = (obj, timelineType) => {
+            if (timelineType == "user") {
+                if (obj != false && obj != prevuserData) {
+                    prevuserData = obj;
                     let jsonData = JSON.parse(obj);
                     this.setState({
-                        data: jsonData
-                    }); 
+                        userData: jsonData
+                    });
                 }
             } else {
-                prevData = "";
-                this.setState({
-                    data: null
-                });
+                if (obj != false) {
+                    if (obj != prevData) {
+                        prevData = obj;
+                        let jsonData = JSON.parse(obj);
+                        this.setState({
+                            data: jsonData
+                        }); 
+                    }
+                } else {
+                    prevData = "";
+                    this.setState({
+                        data: null
+                    });
+                }
             }
         }
     }
@@ -43,12 +55,22 @@ class TimelineComponent extends React.Component {
         }
     }
 
+    async requestUserTimeline() {
+        try {
+            const data = await userTimelineReq();
+            this.parseDataJson(data);
+        } catch {
+            this.parseDataJson(false);
+        }
+    }
+
     buttonClick () {
         this.requestTimeline();
     }
 
     componentDidMount() {
         this.requestTimeline();
+
     }
 
     render() {
