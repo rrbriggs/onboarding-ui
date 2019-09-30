@@ -1,5 +1,6 @@
 import React from 'react';
-import timelineReq from '../TimelineReq';
+import {timelineReq} from '../TimelineReq';
+import {userTimelineReq} from '../TimelineReq';
 import PostFactoryComponent from './PostFactoryComponent';
 
 class TimelineComponent extends React.Component {
