@@ -7,7 +7,8 @@ class TimelineComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this.buttonClick = this.buttonClick.bind(this);
+        this.homeButtonClick = this.homeButtonClick.bind(this);
+        this.userButtonClick = this.userButtonClick.bind(this);
 
         let prevData = null;
         let prevUserData = null;
@@ -20,11 +21,18 @@ class TimelineComponent extends React.Component {
 
         this.parseDataJson = (obj, timelineType) => {
             if (timelineType == "user") {
-                if (obj != false && obj != prevuserData) {
-                    prevuserData = obj;
-                    let jsonData = JSON.parse(obj);
+                if (obj != false) {
+                    if (obj != prevData) {
+                        prevUserData = obj;
+                        let jsonData = JSON.parse(obj);
+                        this.setState({
+                            userData: jsonData
+                        });
+                    }
+                } else {
+                    prevUserData = "";
                     this.setState({
-                        userData: jsonData
+                        userData: null
                     });
                 }
             } else {
@@ -57,20 +65,24 @@ class TimelineComponent extends React.Component {
 
     async requestUserTimeline() {
         try {
-            const data = await userTimelineReq();
-            this.parseDataJson(data);
+            const userData = await userTimelineReq();
+            this.parseDataJson(userData, "user");
         } catch {
-            this.parseDataJson(false);
+            this.parseDataJson(false, "user");
         }
     }
 
-    buttonClick () {
+    homeButtonClick() {
         this.requestTimeline();
+    }
+
+    userButtonClick() {
+        this.requestUserTimeline();
     }
 
     componentDidMount() {
         this.requestTimeline();
-
+        this.requestUserTimeline();
     }
 
     render() {
@@ -89,15 +101,42 @@ class TimelineComponent extends React.Component {
         } else {
             timeline = <div className='error'>No data currently available.</div>
         }
+
+        let userTimeCount = 0;
+        let userTimeline;
+        if (this.state.userData != null) {
+            userTimeline = (
+                this.state.userData.map((post) => {
+                    if(post != "") {
+                        let postOddity = ((userTimeCount % 2 == 0) ? 'evenUserPost' : 'oddUserPost')
+                        userTimeCount++;
+                        return <PostFactoryComponent key={post.postID + 1} postID={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity} userTimeline="true"/>
+                    }
+                })
+            );
+        } else {
+            userTimeline = <div className='error'>No tweets are available, post a tweet!</div>
+        }
          
         return (
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
-                <div className='infoContainer'>
-                    <button id="getTimelineButton" onClick={this.buttonClick} className='button'>Get Timeline</button>
-                </div>
                 <div id='timelineDiv' className='timelineDiv'>
-                    {timeline}
+                    <div id='homeTimeline' className='homeTimeline'> 
+                        <h2> Home Timeline </h2>
+                        <div className='infoContainer'>
+                            <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
+                        </div>
+                        {timeline} 
+                    </div>
+                    <div id='userTimeline' className='userTimeline'> 
+                        
+                        <div className='userInfoContainer'>
+                            <h2> User Timeline </h2>
+                            <button id="getUserTimelineButton" onClick={this.userButtonClick} className='button'>Refresh</button>
+                        </div>
+                        {userTimeline} 
+                    </div>
                 </div> 
             </div>
         );

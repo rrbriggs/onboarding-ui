@@ -12,13 +12,24 @@ class PostFactoryComponent extends React.Component {
     }
 
     render() {
-        let styleClass = `${this.props.postStyle} postStyle`;
-        return(
-            <div className={styleClass} onClick={this.handleClick}>
-                <PhotoContainer photoURL={this.props.photoURL} screenName={this.props.screenName} userHandle={this.props.userHandle} />
-                <MessageContainer date={this.props.date} statusMessage={this.props.statusMessage} />
-            </div>
-        )
+        if (this.props.userTimeline == "true") {
+            let styleClass = `${this.props.postStyle} postStyle`;
+            return(
+                <div className={styleClass} onClick={this.handleClick}>
+                    <PhotoContainer photoURL={this.props.photoURL} screenName={this.props.screenName} />
+                    <MessageContainer date={this.props.date} statusMessage={this.props.statusMessage} />
+                </div>
+            )
+        } 
+        else {
+            let styleClass = `${this.props.postStyle} postStyle`;
+            return(
+                <div className={styleClass} onClick={this.handleClick}>
+                    <PhotoContainer photoURL={this.props.photoURL} screenName={this.props.screenName} userHandle={this.props.userHandle} />
+                    <MessageContainer date={this.props.date} statusMessage={this.props.statusMessage} />
+                </div>
+            )
+        }
     }
 }
 
