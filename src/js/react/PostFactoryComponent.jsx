@@ -5,31 +5,21 @@ import MessageContainer from './MessageContainer';
 class PostFactoryComponent extends React.Component {
     constructor(props) {
         super(props);
+        this.handle = this.props.userHandle;
 
-        this.handleClick = () => {
-            document.location.href = `http://twitter.com/${this.props.userHandle}/status/${this.props.postID}`
-        }
-    }
-
-    render() {
         if (this.props.userTimeline == "true") {
-            let styleClass = `${this.props.postStyle} postStyle`;
-            return(
-                <div className={styleClass} onClick={this.handleClick}>
-                    <PhotoContainer photoURL={this.props.photoURL} screenName={this.props.screenName} />
-                    <MessageContainer date={this.props.date} statusMessage={this.props.statusMessage} />
-                </div>
-            )
-        } 
-        else {
-            let styleClass = `${this.props.postStyle} postStyle`;
-            return(
-                <div className={styleClass} onClick={this.handleClick}>
-                    <PhotoContainer photoURL={this.props.photoURL} screenName={this.props.screenName} userHandle={this.props.userHandle} />
-                    <MessageContainer date={this.props.date} statusMessage={this.props.statusMessage} />
-                </div>
-            )
-        }
+            this.handle = "";
+        }        
+    }
+    
+    render() {
+        let styleClass = `${this.props.postStyle} postStyle`;
+        return(
+            <div className={styleClass} onClick={this.handleClick}>
+                <PhotoContainer photoURL={this.props.photoURL} screenName={this.props.screenName} userHandle={this.handle} />
+                <MessageContainer date={this.props.date} statusMessage={this.props.statusMessage} />
+            </div>
+        )
     }
 }
 
