@@ -19,31 +19,31 @@ class TimelineComponent extends React.Component {
             hasError: false
         }
 
-        this.parseDataJson = (obj, timelineType) => {
-            if (timelineType == "user") {
-                if (obj != false) {
-                    if (obj != prevData) {
-                        prevUserData = obj;
-                        let jsonData = JSON.parse(obj);
-                        this.setState({
-                            userData: jsonData
-                        });
-                    }
-                } else {
-                    prevUserData = "";
+        this.parseUserTimeline = (obj) => {
+            if (obj != false) {
+                if (obj != prevData) {
+                    prevUserData = obj;
+                    let jsonData = JSON.parse(obj);
                     this.setState({
-                        userData: null
+                        userData: jsonData
                     });
                 }
             } else {
-                if (obj != false) {
-                    if (obj != prevData) {
-                        prevData = obj;
-                        let jsonData = JSON.parse(obj);
-                        this.setState({
-                            data: jsonData
-                        }); 
-                    }
+                prevUserData = "";
+                this.setState({
+                    userData: null
+                });
+            }
+        }
+
+        this.parseDataJson = (obj) => {
+            if (obj != false) {
+                if (obj != prevData) {
+                    prevData = obj;
+                    let jsonData = JSON.parse(obj);
+                    this.setState({
+                        data: jsonData
+                    }); 
                 } else {
                     prevData = "";
                     this.setState({
@@ -66,9 +66,9 @@ class TimelineComponent extends React.Component {
     async requestUserTimeline() {
         try {
             const userData = await userTimelineReq();
-            this.parseDataJson(userData, "user");
+            this.parseUserTimeline(userData);
         } catch {
-            this.parseDataJson(false, "user");
+            this.parseUserTimeline(false);
         }
     }
 
