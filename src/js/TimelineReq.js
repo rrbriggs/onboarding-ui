@@ -3,7 +3,7 @@ export async function timelineReq() {
         const xhr = new XMLHttpRequest();
         xhr.open("GET", "http://localhost:8080/api/1.0/twitter/timeline");
         xhr.onload = () => resolve(xhr.response);
-        xhr.onerror = () => reject(false);
+        xhr.onerror = () => reject();
         xhr.send();
     });
 }
@@ -13,7 +13,7 @@ export async function userTimelineReq() {
         const xhr = new XMLHttpRequest();
         xhr.open("GET", "http://localhost:8080/api/1.0/twitter/userTimeline");
         xhr.onload = () => resolve(xhr.response);
-        xhr.onerror = () => reject(false);
+        xhr.onerror = () => reject();
         xhr.send();
     });
 }

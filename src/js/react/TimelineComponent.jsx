@@ -10,8 +10,8 @@ class TimelineComponent extends React.Component {
         this.homeButtonClick = this.homeButtonClick.bind(this);
         this.userButtonClick = this.userButtonClick.bind(this);
 
-        let prevData = null;
-        let prevUserData = null;
+        this.prevData = null;
+        this.prevUserData = null;
 
         this.state = { 
             data: [],
@@ -21,36 +21,26 @@ class TimelineComponent extends React.Component {
 
         this.parseUserTimeline = (obj) => {
             if (obj != false) {
-                if (obj != prevData) {
-                    prevUserData = obj;
+                if (obj != this.prevData) {
+                    this.prevUserData = obj;
                     let jsonData = JSON.parse(obj);
                     this.setState({
                         userData: jsonData
                     });
                 }
-            } else {
-                prevUserData = "";
-                this.setState({
-                    userData: null
-                });
-            }
+            } 
         }
 
         this.parseDataJson = (obj) => {
             if (obj != false) {
-                if (obj != prevData) {
-                    prevData = obj;
+                if (obj != this.prevData) {
+                    this.prevData = obj;
                     let jsonData = JSON.parse(obj);
                     this.setState({
                         data: jsonData
                     }); 
                 } 
-            } else {
-                prevData = "";
-                this.setState({
-                    data: null
-                });
-            }
+            } 
         }
     }
 
@@ -59,7 +49,10 @@ class TimelineComponent extends React.Component {
             const data = await timelineReq();
             this.parseDataJson(data);
         } catch {
-            this.parseDataJson(false);
+            this.prevData = "";
+            this.setState({
+                data: null
+            });
         }
     }
 
@@ -68,7 +61,10 @@ class TimelineComponent extends React.Component {
             const userData = await userTimelineReq();
             this.parseUserTimeline(userData);
         } catch {
-            this.parseUserTimeline(false);
+            this.prevUserData = "";
+            this.setState({
+                userData: null
+            });
         }
     }
 
