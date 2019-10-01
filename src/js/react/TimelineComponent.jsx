@@ -44,12 +44,12 @@ class TimelineComponent extends React.Component {
                     this.setState({
                         data: jsonData
                     }); 
-                } else {
-                    prevData = "";
-                    this.setState({
-                        data: null
-                    });
-                }
+                } 
+            } else {
+                prevData = "";
+                this.setState({
+                    data: null
+                });
             }
         }
     }
@@ -85,11 +85,10 @@ class TimelineComponent extends React.Component {
         this.requestUserTimeline();
     }
 
-    render() {
+    homeTimeline() {
         let count = 0;
-        let timeline;
         if (this.state.data != null) {
-            timeline = (
+            return (
                 this.state.data.map((post) => {
                     if(post != "") {
                         let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
@@ -99,13 +98,14 @@ class TimelineComponent extends React.Component {
                 })
             );
         } else {
-            timeline = <div className='error'>No data currently available.</div>
+            return <div className='error'>No data currently available.</div>
         }
+    }
 
+    userTimeline() {
         let userTimeCount = 0;
-        let userTimeline;
         if (this.state.userData != null) {
-            userTimeline = (
+            return (
                 this.state.userData.map((post) => {
                     if(post != "") {
                         let postOddity = ((userTimeCount % 2 == 0) ? 'evenUserPost' : 'oddUserPost')
@@ -115,9 +115,11 @@ class TimelineComponent extends React.Component {
                 })
             );
         } else {
-            userTimeline = <div className='error'>No tweets are available, post a tweet!</div>
+            return <div className='error'>No tweets are available, post a tweet!</div>
         }
-         
+    }
+
+    render() {         
         return (
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
@@ -127,7 +129,7 @@ class TimelineComponent extends React.Component {
                         <div className='infoContainer'>
                             <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
                         </div>
-                        {timeline} 
+                        {this.homeTimeline()} 
                     </div>
                     <div id='userTimeline' className='userTimeline'> 
                         
@@ -135,7 +137,7 @@ class TimelineComponent extends React.Component {
                             <h2> User Timeline </h2>
                             <button id="getUserTimelineButton" onClick={this.userButtonClick} className='button'>Refresh</button>
                         </div>
-                        {userTimeline} 
+                        {this.userTimeline()} 
                     </div>
                 </div> 
             </div>
