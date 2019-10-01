@@ -10,6 +10,10 @@ class PostFactoryComponent extends React.Component {
         if (this.props.userTimeline == "true") {
             this.handle = "";
         }        
+
+        this.handleClick = () => {
+            document.location.href = `http://twitter.com/${this.props.userHandle}/status/${this.props.postID}`
+        }
     }
     
     render() {
