@@ -20,26 +20,22 @@ class TimelineComponent extends React.Component {
         }
 
         this.parseUserTimeline = (obj) => {
-            if (obj != false) {
-                if (obj != this.prevData) {
-                    this.prevUserData = obj;
-                    let jsonData = JSON.parse(obj);
-                    this.setState({
-                        userData: jsonData
-                    });
-                }
-            } 
+            if (obj != this.prevData) {
+                this.prevUserData = obj;
+                let jsonData = JSON.parse(obj);
+                this.setState({
+                    userData: jsonData
+                });
+            }
         }
 
         this.parseDataJson = (obj) => {
-            if (obj != false) {
-                if (obj != this.prevData) {
-                    this.prevData = obj;
-                    let jsonData = JSON.parse(obj);
-                    this.setState({
-                        data: jsonData
-                    }); 
-                } 
+            if (obj != this.prevData) {
+                this.prevData = obj;
+                let jsonData = JSON.parse(obj);
+                this.setState({
+                    data: jsonData
+                }); 
             } 
         }
     }
