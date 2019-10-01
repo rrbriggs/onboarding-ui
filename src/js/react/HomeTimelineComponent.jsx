@@ -2,7 +2,7 @@ import React from 'react';
 import {timelineReq} from '../TimelineReq';
 import PostFactoryComponent from './PostFactoryComponent';
 
-class HomeTimeline extends React.Component {
+class HomeTimelineComponent extends React.Component {
     constructor(props) {
         super(props);
 
@@ -10,8 +10,7 @@ class HomeTimeline extends React.Component {
         this.prevData = null;
 
         this.state = { 
-            data: [],
-            userData: [],
+            data: null,
             hasError: false
         }
 
@@ -76,4 +75,4 @@ class HomeTimeline extends React.Component {
     }
 }
 
-export default HomeTimeline;
+export default HomeTimelineComponent;

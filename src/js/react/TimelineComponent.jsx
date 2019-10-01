@@ -1,6 +1,6 @@
 import React from 'react';
-import HomeTimeline from '../react/HomeTimelineComponent';
-import UserTimeline from '../react/UserTimelineComponent';
+import HomeTimelineComponent from '../react/HomeTimelineComponent';
+import UserTimelineComponent from '../react/UserTimelineComponent';
 
 class TimelineComponent extends React.Component {
     constructor(props) {
@@ -12,8 +12,8 @@ class TimelineComponent extends React.Component {
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
                 <div id='timelineDiv' className='timelineDiv'>
-                    <HomeTimeline />
-                    <UserTimeline />
+                    <HomeTimelineComponent />
+                    <UserTimelineComponent />
                 </div> 
             </div>
         );
