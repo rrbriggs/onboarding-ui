@@ -66,12 +66,12 @@ class HomeTimeline extends React.Component {
     render() {
         return(
             <div id='homeTimeline' className='homeTimeline'> 
-                        <h2 className="timelineHeader"> Home Timeline </h2>
-                        <div className='infoContainer'>
-                            <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
-                        </div>
-                        {this.homeTimeline()} 
-                    </div>
+                <h2 className="timelineHeader"> Home Timeline </h2>
+                <div className='infoContainer'>
+                    <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
+                </div>
+                {this.homeTimeline()} 
+            </div>
         );
     }
 }
