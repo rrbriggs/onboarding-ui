@@ -1,15 +1,10 @@
 import React from 'react';
 import HomeTimeline from '../react/HomeTimelineComponent';
 import UserTimeline from '../react/UserTimelineComponent';
-import PostFactoryComponent from './PostFactoryComponent';
 
 class TimelineComponent extends React.Component {
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-
     }
 
     render() {         
