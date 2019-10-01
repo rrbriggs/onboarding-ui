@@ -125,7 +125,7 @@ class TimelineComponent extends React.Component {
                 <div className='title'>Lab for Briggs</div>
                 <div id='timelineDiv' className='timelineDiv'>
                     <div id='homeTimeline' className='homeTimeline'> 
-                        <h2> Home Timeline </h2>
+                        <h2 className="timelineHeader"> Home Timeline </h2>
                         <div className='infoContainer'>
                             <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
                         </div>
@@ -134,7 +134,7 @@ class TimelineComponent extends React.Component {
                     <div id='userTimeline' className='userTimeline'> 
                         
                         <div className='userInfoContainer'>
-                            <h2> User Timeline </h2>
+                            <h2 className="timelineHeader"> User Timeline </h2>
                             <button id="getUserTimelineButton" onClick={this.userButtonClick} className='button'>Refresh</button>
                         </div>
                         {this.userTimeline()} 
