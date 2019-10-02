@@ -17,3 +17,13 @@ export async function userTimelineReq() {
         xhr.send();
     });
 }
+
+export async function filteredHomeTimeline(key) {
+    return await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://localhost:8080/api/1.0/twitter/timeline/filter?filterKey=${key}`);
+        xhr.onload = () => resolve(xhr.response);
+        xhr.onerror = () => reject(false);
+        xhr.send();
+    });
+}

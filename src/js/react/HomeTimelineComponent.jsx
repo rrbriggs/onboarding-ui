@@ -1,5 +1,6 @@
 import React from 'react';
 import {timelineReq} from '../TimelineReq';
+import {filteredHomeTimeline} from '../TimelineReq';
 import PostFactoryComponent from './PostFactoryComponent';
 
 class HomeTimelineComponent extends React.Component {
@@ -7,9 +8,13 @@ class HomeTimelineComponent extends React.Component {
         super(props);
 
         this.homeButtonClick = this.homeButtonClick.bind(this);
+        this.handleHomeFilterChange = this.handleHomeFilterChange.bind(this);
+        this.handleHomeFilterKeyPress = this.handleHomeFilterKeyPress.bind(this);
+        this.getFilteredResults = this.getFilteredResults.bind(this);
         this.prevData = null;
 
-        this.state = { 
+        this.state = {
+            filter: "",
             data: null,
             hasError: false
         }
@@ -62,12 +67,46 @@ class HomeTimelineComponent extends React.Component {
         }
     }
 
+    handleHomeFilterChange(e) {
+        this.setState({ filter: e.target.value});
+    }
+
+    handleHomeFilterKeyPress(e) {
+        if (e.key == "Enter" && this.state.filter.valueOf()) {
+            this.getFilteredResults();
+        }
+    }
+
+    async getFilteredResults(e) {
+        if(e) {
+            e.preventDefault();
+        }
+
+        this.setState({
+            data: [],
+        });
+
+        try {
+            const data = await filteredHomeTimeline(this.state.filter.toLowerCase());
+            this.parseDataJson(data);
+        } catch {
+            this.prevData = "";
+            this.setState({
+                data: null,
+            });
+        }
+    }
+
     render() {
         return(
             <div id='homeTimeline' className='homeTimeline'> 
                 <h2 className="timelineHeader"> Home Timeline </h2>
                 <div className='infoContainer'>
                     <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
+
+                    <input id="filterHome" type="text" placeholder="Enter filter query." value={this.state.filter} onChange={this.handleHomeFilterChange} onKeyPress={this.handleHomeFilterKeyPress}></input>
+                    <button id="filterHomeButton" type="button" onClick={this.getFilteredResults} disabled={(this.state.filter)? false : true}>Filter</button>
+
                 </div>
                 {this.homeTimeline()} 
             </div>
