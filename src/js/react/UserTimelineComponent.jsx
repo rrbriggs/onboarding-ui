@@ -14,8 +14,8 @@ class UserTimelineComponent extends React.Component {
             hasError: false
         }
 
-        this.parseUserTimeline = (obj) => {
-            if (obj != this.prevData) {
+        this.processTimeline = (obj) => {
+            if (obj != this.prevUserData) {
                 this.prevUserData = obj;
                 let jsonData = JSON.parse(obj);
                 this.setState({
@@ -32,7 +32,7 @@ class UserTimelineComponent extends React.Component {
     async requestUserTimeline() {
         try {
             const userData = await userTimelineReq();
-            this.parseUserTimeline(userData);
+            this.processTimeline(userData);
         } catch {
             this.prevUserData = "";
             this.setState({
