@@ -3,7 +3,6 @@ $font-stack: serif;
 .master {
     font-family: $font-stack;
     font-size: 11pt;
-    width: 100%;
 
     .error {
         padding-left: 33px;
@@ -20,7 +19,7 @@ $font-stack: serif;
     }
 
     .infoContainer {
-        margin: 0px 33px;
+        border-bottom: 1px groove #c0c0c0;
 
         .button {
             border: 1px outset black;
@@ -29,9 +28,39 @@ $font-stack: serif;
         }
     }
 
+    .userInfoContainer {
+        border-bottom: 1px groove #c0c0c0;
+
+        text-align: right;
+        .button {
+            border: 1px outset black;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+    }
+
     .timelineDiv {
-        margin: 0px 32px 32px;
-        border: 1px groove #686868;
+        margin: 0px 25px 32px;
+        display: flex;
+        flex-direction: row;
+
+        .timelineHeader {
+            text-align: center;
+            vertical-align: middle;
+            margin-bottom: 0px; 
+        }
+
+        .homeTimeline {
+            width: 55%;
+            float: left;
+            margin: 0px 10px 0px 0px;
+        }
+
+        .userTimeline {
+            width: 45%;
+            float: right;
+            margin: 0px 0px 0px 10px;
+        }
 
         .evenPostBlock {
             background-color: #e8f5fd;
@@ -41,11 +70,21 @@ $font-stack: serif;
             background-color: #e9e9e9;
         }
 
+        .evenUserPost {
+            background-color: #1da1f2;
+        }
+
+        .oddUserPost {
+            background-color: #f5f8fa;
+        }
+
         .postStyle {
             padding: 8px;
             display: flex;
             flex-direction: row;
             vertical-align: middle;
+            border-left: 1px groove #c0c0c0;
+            border-right: 1px groove #c0c0c0;
             border-bottom: 1px groove #c0c0c0;
             cursor: pointer;
 
