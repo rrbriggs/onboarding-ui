@@ -53,7 +53,7 @@ class UserTimelineComponent extends React.Component {
                     if(post != "") {
                         let postOddity = ((userTimeCount % 2 == 0) ? 'evenUserPost' : 'oddUserPost')
                         userTimeCount++;
-                        return <PostFactoryComponent key={post.postID + 1} postID={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity} userTimeline="true"/>
+                        return <PostFactoryComponent key={post.postID + 1} postID={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity} userTimeline={true}/>
                     }
                 })
             );
