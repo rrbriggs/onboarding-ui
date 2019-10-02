@@ -16,15 +16,16 @@ class HomeTimelineComponent extends React.Component {
         this.state = {
             filter: "",
             data: null,
+            filterNoData: null,
             hasError: false
         }
 
         this.processTimeline = (obj) => {
             if (obj != this.prevData) {
                 this.prevData = obj;
-                let jsonData = JSON.parse(obj);
+                // let jsonData = JSON.parse(obj);
                 this.setState({
-                    data: jsonData
+                    data: obj
                 }); 
             } 
         }
@@ -37,7 +38,11 @@ class HomeTimelineComponent extends React.Component {
     async requestTimeline() {
         try {
             const data = await timelineReq();
-            this.processTimeline(data);
+            if (data != null) {
+                let jsonData = JSON.parse(data);
+                this.processTimeline(jsonData);
+            }
+
         } catch {
             this.prevData = "";
             this.setState({
@@ -63,7 +68,11 @@ class HomeTimelineComponent extends React.Component {
                 })
             );
         } else {
-            return <div className='error'>No data currently available.</div>
+            if (this.state.filterNoData == true) {
+                return <div className='error'>No data matching your filter query was found.</div>
+            } else {
+                return <div className='error'>No data currently available.</div>
+            }
         }
     }
 
@@ -83,12 +92,23 @@ class HomeTimelineComponent extends React.Component {
         }
 
         this.setState({
-            data: [],
+            data: null,
         });
 
         try {
             const data = await filteredHomeTimeline(this.state.filter.toLowerCase());
-            this.processTimeline(data);
+            if (data != null) {
+                let jsonData = JSON.parse(data);
+                if (jsonData.length != 0) {
+                    this.processTimeline(jsonData);
+                } else {
+                    this.prevData = "";
+                    this.setState({
+                        data: null,
+                        filterNoData: true,
+                    });
+                }
+            }
         } catch {
             this.prevData = "";
             this.setState({
