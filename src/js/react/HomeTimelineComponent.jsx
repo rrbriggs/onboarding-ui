@@ -23,7 +23,6 @@ class HomeTimelineComponent extends React.Component {
         this.processTimeline = (obj) => {
             if (obj != this.prevData) {
                 this.prevData = obj;
-                // let jsonData = JSON.parse(obj);
                 this.setState({
                     data: obj
                 }); 
@@ -39,8 +38,7 @@ class HomeTimelineComponent extends React.Component {
         try {
             const data = await timelineReq();
             if (data != null) {
-                let jsonData = JSON.parse(data);
-                this.processTimeline(jsonData);
+                this.processTimeline(data);
             }
 
         } catch {
@@ -98,9 +96,8 @@ class HomeTimelineComponent extends React.Component {
         try {
             const data = await filteredHomeTimeline(this.state.filter.toLowerCase());
             if (data != null) {
-                let jsonData = JSON.parse(data);
-                if (jsonData.length != 0) {
-                    this.processTimeline(jsonData);
+                if (data.length != 0) {
+                    this.processTimeline(data);
                 } else {
                     this.prevData = "";
                     this.setState({

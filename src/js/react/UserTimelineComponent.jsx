@@ -17,9 +17,8 @@ class UserTimelineComponent extends React.Component {
         this.processTimeline = (obj) => {
             if (obj != this.prevUserData) {
                 this.prevUserData = obj;
-                let jsonData = JSON.parse(obj);
                 this.setState({
-                    userData: jsonData
+                    userData: obj
                 });
             }
         }
