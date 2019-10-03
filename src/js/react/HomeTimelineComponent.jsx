@@ -1,5 +1,6 @@
 import React from 'react';
 import {timelineReq} from '../TimelineReq';
+import {filteredHomeTimeline} from '../TimelineReq';
 import PostFactoryComponent from './PostFactoryComponent';
 
 class HomeTimelineComponent extends React.Component {
@@ -7,19 +8,23 @@ class HomeTimelineComponent extends React.Component {
         super(props);
 
         this.homeButtonClick = this.homeButtonClick.bind(this);
+        this.handleHomeFilterChange = this.handleHomeFilterChange.bind(this);
+        this.handleHomeFilterKeyPress = this.handleHomeFilterKeyPress.bind(this);
+        this.getFilteredResults = this.getFilteredResults.bind(this);
         this.prevData = null;
 
-        this.state = { 
+        this.state = {
+            filter: "",
             data: null,
+            filterNoData: null,
             hasError: false
         }
 
-        this.parseDataJson = (obj) => {
+        this.processTimeline = (obj) => {
             if (obj != this.prevData) {
                 this.prevData = obj;
-                let jsonData = JSON.parse(obj);
                 this.setState({
-                    data: jsonData
+                    data: obj
                 }); 
             } 
         }
@@ -32,7 +37,10 @@ class HomeTimelineComponent extends React.Component {
     async requestTimeline() {
         try {
             const data = await timelineReq();
-            this.parseDataJson(data);
+            if (data != null) {
+                this.processTimeline(data);
+            }
+
         } catch {
             this.prevData = "";
             this.setState({
@@ -58,7 +66,51 @@ class HomeTimelineComponent extends React.Component {
                 })
             );
         } else {
-            return <div className='error'>No data currently available.</div>
+            if (this.state.filterNoData == true) {
+                return <div className='error'>No data matching your filter query was found.</div>
+            } else {
+                return <div className='error'>No data currently available.</div>
+            }
+        }
+    }
+
+    handleHomeFilterChange(e) {
+        this.setState({ filter: e.target.value});
+    }
+
+    handleHomeFilterKeyPress(e) {
+        if (e.key == "Enter" && this.state.filter.valueOf()) {
+            this.getFilteredResults();
+        }
+    }
+
+    async getFilteredResults(e) {
+        if(e) {
+            e.preventDefault();
+        }
+
+        this.setState({
+            data: null,
+        });
+
+        try {
+            const data = await filteredHomeTimeline(this.state.filter.toLowerCase());
+            if (data != null) {
+                if (data.length != 0) {
+                    this.processTimeline(data);
+                } else {
+                    this.prevData = "";
+                    this.setState({
+                        data: null,
+                        filterNoData: true,
+                    });
+                }
+            }
+        } catch {
+            this.prevData = "";
+            this.setState({
+                data: null,
+            });
         }
     }
 
@@ -67,7 +119,13 @@ class HomeTimelineComponent extends React.Component {
             <div id='homeTimeline' className='homeTimeline'> 
                 <h2 className="timelineHeader"> Home Timeline </h2>
                 <div className='infoContainer'>
+                    <div className='infoInner'>
+                        <input id="filterHome" type="text" placeholder="Enter filter query." value={this.state.filter} onChange={this.handleHomeFilterChange} onKeyPress={this.handleHomeFilterKeyPress}></input>
+                        <button id="filterHomeButton" type="button" onClick={this.getFilteredResults} disabled={(this.state.filter)? false : true}>Filter</button>
+                    </div>
                     <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
+
+
                 </div>
                 {this.homeTimeline()} 
             </div>
