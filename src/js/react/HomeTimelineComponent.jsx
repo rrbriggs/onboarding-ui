@@ -116,7 +116,7 @@ class HomeTimelineComponent extends React.Component {
 
     render() {
         return(
-            <div id='homeTimeline' className='homeTimeline'> 
+            <div id='homeTimeline' className='homeTimeline' style={{display: this.props.display}}>
                 <div className='infoContainer'>
                     <div className='infoInner'>
                         <input id="filterHome" type="text" placeholder="Enter filter query." value={this.state.filter} onChange={this.handleHomeFilterChange} onKeyPress={this.handleHomeFilterKeyPress}></input>

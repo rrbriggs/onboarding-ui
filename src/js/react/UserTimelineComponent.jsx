@@ -62,7 +62,7 @@ class UserTimelineComponent extends React.Component {
 
     render() {
         return(
-            <div id='userTimeline' className='userTimeline' style={{display: 'none'}}>
+            <div id='userTimeline' className='userTimeline' style={{display: this.props.display}}>
                 <div className='userInfoContainer'>
                     <button id="getUserTimelineButton" onClick={this.userButtonClick} className='button'>Refresh</button>
                 </div>
