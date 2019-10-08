@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeTimelineComponent from '../react/HomeTimelineComponent';
 import UserTimelineComponent from '../react/UserTimelineComponent';
+import PostTweetComponent from "./PostTweetComponent";
 
 class TimelineComponent extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class TimelineComponent extends React.Component {
         this.state = {
             homeTimelineDisplay: '',
             userTimelineDisplay: 'none',
+            postTweetDisplay: 'none',
             homeTabClass: 'tab',
             userTabClass: 'tab',
             postTabClass: 'tab',
@@ -22,6 +24,7 @@ class TimelineComponent extends React.Component {
                 this.setState({
                     homeTimelineDisplay: '',
                     userTimelineDisplay: 'none',
+                    postTweetDisplay: 'none',
                     homeTabClass: 'tab-selected',
                     userTabClass: 'tab',
                     postTabClass: 'tab',
@@ -31,6 +34,7 @@ class TimelineComponent extends React.Component {
                 this.setState({
                     homeTimelineDisplay: 'none',
                     userTimelineDisplay: '',
+                    postTweetDisplay: 'none',
                     homeTabClass: 'tab',
                     userTabClass: 'tab-selected',
                     postTabClass: 'tab',
@@ -40,12 +44,12 @@ class TimelineComponent extends React.Component {
                 this.setState({
                     homeTimelineDisplay: 'none',
                     userTimelineDisplay: 'none',
+                    postTweetDisplay: '',
                     homeTabClass: 'tab',
                     userTabClass: 'tab',
                     postTabClass: 'tab-selected',
                 }) ;
-            default:
-                console.log("Tab value not handled");
+                break;
         }
     }
 
@@ -65,6 +69,7 @@ class TimelineComponent extends React.Component {
                 <div id='timelineDiv' className='timelineDiv'>
                     <HomeTimelineComponent display={this.state.homeTimelineDisplay}/>
                     <UserTimelineComponent display={this.state.userTimelineDisplay}/>
+                    <PostTweetComponent display={this.state.postTweetDisplay}/>
                 </div> 
             </div>
         );

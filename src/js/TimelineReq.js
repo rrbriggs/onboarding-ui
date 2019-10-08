@@ -27,3 +27,20 @@ export async function filteredHomeTimeline(key) {
         xhr.send();
     });
 }
+
+export async function postTweet(tweet) {
+    let body = `message=${tweet}`;
+
+    return await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `http://localhost:8080/api/1.0/twitter/tweet`, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = () => {
+            if (xhr.status == 200) {
+                resolve(xhr.response);
+            }
+        };
+        xhr.onerror = () => reject(false);
+        xhr.send(body);
+    });
+}
