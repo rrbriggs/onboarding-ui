@@ -9,7 +9,10 @@ class TimelineComponent extends React.Component {
 
         this.state = {
             homeTimelineDisplay: '',
-            userTimelineDisplay: 'none'
+            userTimelineDisplay: 'none',
+            homeTabClass: 'tab',
+            userTabClass: 'tab',
+            postTabClass: 'tab',
         }
     }
 
@@ -19,14 +22,28 @@ class TimelineComponent extends React.Component {
                 this.setState({
                     homeTimelineDisplay: '',
                     userTimelineDisplay: 'none',
+                    homeTabClass: 'tab-selected',
+                    userTabClass: 'tab',
+                    postTabClass: 'tab',
                 }) ;
                 break;
             case 'userTimeline':
                 this.setState({
                     homeTimelineDisplay: 'none',
                     userTimelineDisplay: '',
+                    homeTabClass: 'tab',
+                    userTabClass: 'tab-selected',
+                    postTabClass: 'tab',
                 }) ;
                 break;
+            case 'postToTimeline':
+                this.setState({
+                    homeTimelineDisplay: 'none',
+                    userTimelineDisplay: 'none',
+                    homeTabClass: 'tab',
+                    userTabClass: 'tab',
+                    postTabClass: 'tab-selected',
+                }) ;
             default:
                 console.log("Tab value not handled");
         }
@@ -41,9 +58,9 @@ class TimelineComponent extends React.Component {
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
                 <div className='tab-bar'>
-                    <button className='tab' onClick={() => this.handleTabClick('homeTimeline')}>Home Timeline</button>
-                    <button className='tab' onClick={() => this.handleTabClick('userTimeline')}>User Timeline</button>
-                    <button className='tab'>Post to Timeline</button>
+                    <button className={this.state.homeTabClass} onClick={() => this.handleTabClick('homeTimeline')}>Home Timeline</button>
+                    <button className={this.state.userTabClass} onClick={() => this.handleTabClick('userTimeline')}>User Timeline</button>
+                    <button className={this.state.postTabClass} onClick={() => this.handleTabClick('postToTimeline')}>Post Tweet</button>
                 </div>
                 <div id='timelineDiv' className='timelineDiv'>
                     <HomeTimelineComponent display={this.state.homeTimelineDisplay}/>
