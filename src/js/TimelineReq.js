@@ -36,8 +36,8 @@ export async function postTweet(tweet) {
         xhr.open("POST", `http://localhost:8080/api/1.0/twitter/tweet`, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = () => {
-            if (xhr.status == 200) {
-                resolve(xhr.response);
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                resolve(JSON.parse(xhr.responseText));
             }
         };
         xhr.onerror = () => reject(false);

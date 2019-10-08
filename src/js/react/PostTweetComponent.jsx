@@ -7,8 +7,9 @@ class PostTweetComponent extends React.Component {
 
         this.handleTweetKeyPress = this.handleTweetKeyPress.bind(this);
         this.handlePostTweetChange = this.handlePostTweetChange.bind(this);
-        this.sendTweetButtonClick = this.sendTweetButtonClick.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
+
+        this.testMessage = this.testMessage.bind(this);
 
         this.state = {
             tweet: "",
@@ -18,54 +19,25 @@ class PostTweetComponent extends React.Component {
         }
 
         this.processTimeline = (obj) => {
-            if (obj != this.prevData) {
-                this.prevData = obj;
-                this.setState({
-                    data: obj
-                });
-            }
-        }
-    }
-
-    componentDidMount() {
-        this.requestTimeline();
-    }
-
-    async requestTimeline() {
-        try {
-            const data = await timelineReq();
-            if (data != null) {
-                this.processTimeline(data);
-            }
-
-        } catch {
-            this.prevData = "";
             this.setState({
-                data: null
+                data: obj
             });
-        }
-    }
 
-    sendTweetButtonClick() {
-        this.sendTweet();
+        }
     }
 
     async sendTweet(e) {
-        console.log('things');
-
         if(e) {
             e.preventDefault();
         }
 
-        // this.setState({
-        //     data: null,
-        // });
+        this.setState({
+            data: null,
+        });
 
         try {
             const data = await postTweet(this.state.tweet);
             if (data != null) {
-                console.log('lets go!!!');
-
                 if (data.length != 0) {
                     this.processTimeline(data);
                 } else {
@@ -76,7 +48,6 @@ class PostTweetComponent extends React.Component {
                 }
             }
         } catch {
-            console.log('failed stuff');
             this.setState({
                 data: null,
             });
@@ -94,19 +65,23 @@ class PostTweetComponent extends React.Component {
         }
     }
 
+    testMessage() {
+        if(this.state.data != null && this.state.data != "") {
+            return(<div>{this.state.data.message}</div>)
+        }
+    }
+
     render() {
         return(
             <div id='postTweet' className='postTweet' style={{display: this.props.display}}>
-                <div className='infoContainer'>
-                    <div className='infoInner'>
-                        <textarea id="tweetText" type="textarea" placeholder="Enter your tweet here." value={this.state.value} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
-                        <button id="sendTweetButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
-                    </div>
-                    {/*<button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>*/}
-
-
+                <div className='postTweetContainer'>
+                    <textarea rows={10} cols={50}  id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.value} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
+                    <button id="sendTweetButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
                 </div>
-                {this.state.data}
+                <div className='infoContainer'>
+                </div>
+
+                {this.testMessage()}
             </div>
         );
     }

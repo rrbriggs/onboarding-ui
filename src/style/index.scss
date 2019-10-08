@@ -50,8 +50,9 @@ $font-stack: serif;
         margin: 10px;
 
         .tab {
-          background-color: #f2f4ff; /* Green */
+          background-color: #f2f4ff;
           color: black;
+          outline: none;
           padding: 15px 32px;
           text-align: center;
           text-decoration: none;
@@ -69,12 +70,13 @@ $font-stack: serif;
         }
 
         .tab:focus{
-            background: blue;
+            background: #B1B5FF;
         }
 
         .tab-selected {
             background-color: #bde4fc;
             color: black;
+            outline: none;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -82,6 +84,16 @@ $font-stack: serif;
             font-size: 16px;
             border: 1px #000000;
             margin: 2px;
+        }
+    }
+
+    .postTweet {
+        text-align: center;
+        .postTweetContainer{
+            //align-content: center;
+            margin: 0px 200px;
+            display: flex;
+            flex-direction: column;
         }
     }
 
