@@ -8,7 +8,7 @@ class PostFactoryComponent extends React.Component {
         this.handle = this.props.userHandle;     
 
         this.handleClick = () => {
-            document.location.href = `http://twitter.com/${this.props.userHandle}/status/${this.props.postID}`
+            window.open(`http://twitter.com/${this.props.userHandle}/status/${this.props.postID}`, '_blank');
         }
     }
     

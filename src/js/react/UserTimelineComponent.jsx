@@ -1,6 +1,7 @@
 import React from 'react';
 import {userTimelineReq} from '../TimelineReq';
 import PostFactoryComponent from './PostFactoryComponent';
+import {displayNameOfNode} from "enzyme/src/Utils";
 
 class UserTimelineComponent extends React.Component {
     constructor(props) {
@@ -61,9 +62,8 @@ class UserTimelineComponent extends React.Component {
 
     render() {
         return(
-            <div id='userTimeline' className='userTimeline'> 
+            <div id='userTimeline' className='userTimeline' style={{display: 'none'}}>
                 <div className='userInfoContainer'>
-                    <h2 className="timelineHeader"> User Timeline </h2>
                     <button id="getUserTimelineButton" onClick={this.userButtonClick} className='button'>Refresh</button>
                 </div>
                 {this.userTimeline()} 
