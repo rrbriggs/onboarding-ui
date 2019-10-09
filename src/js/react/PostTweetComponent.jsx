@@ -9,6 +9,7 @@ class PostTweetComponent extends React.Component {
         this.handlePostTweetChange = this.handlePostTweetChange.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
         this.messageStatus = this.messageStatus.bind(this);
+        this.maxCharCount = 280;
 
         this.state = {
             tweet: "",
@@ -79,8 +80,8 @@ class PostTweetComponent extends React.Component {
         return(
             <div id='postTweet' className='postTweet' style={{display: this.props.display}}>
                 <div className='postTweetContainer'>
-                    <div className="charCount"><span>{this.state.tweet.length}</span></div>
-                    <textarea rows={10} cols={50} maxLength="280" id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.value} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
+                    <div className="charCount"><span>{this.maxCharCount-this.state.tweet.length}</span></div>
+                    <textarea rows={10} cols={50} maxLength={this.maxCharCount} id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.value} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
                     <button id="sendTweetButton" className="sendButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
                     {this.messageStatus()}
                 </div>
