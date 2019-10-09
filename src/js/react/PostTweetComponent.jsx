@@ -1,5 +1,5 @@
 import React from 'react';
-import {filteredHomeTimeline, postTweet} from '../TimelineReq';
+import {postTweet} from '../TimelineReq';
 
 class PostTweetComponent extends React.Component {
     constructor(props) {
@@ -8,13 +8,14 @@ class PostTweetComponent extends React.Component {
         this.handleTweetKeyPress = this.handleTweetKeyPress.bind(this);
         this.handlePostTweetChange = this.handlePostTweetChange.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
+        this.messageCount = this.messageCount.bind(this);
 
-        this.testMessage = this.testMessage.bind(this);
+        this.messageStatus = this.messageStatus.bind(this);
 
         this.state = {
             tweet: "",
             data: null,
-            filterNoData: null,
+            tweetNotSuccessful: null,
             hasError: false
         }
 
@@ -43,13 +44,13 @@ class PostTweetComponent extends React.Component {
                 } else {
                     this.setState({
                         data: null,
-                        filterNoData: true,
                     });
                 }
             }
         } catch {
             this.setState({
                 data: null,
+                tweetNotSuccessful: true,
             });
         }
     }
@@ -65,9 +66,20 @@ class PostTweetComponent extends React.Component {
         }
     }
 
-    testMessage() {
+    messageCount() {
+        return(
+            <div className="charCount"><span>{this.state.tweet.length}</span></div>
+        )
+    }
+
+    messageStatus() {
         if(this.state.data != null && this.state.data != "") {
-            return(<div>{this.state.data.message}</div>)
+            return(<div>Message successfully sent!</div>)
+        }
+
+        if(this.state.tweetNotSuccessful == true) {
+            return(<div>Message not sent.</div>)
+
         }
     }
 
@@ -75,13 +87,14 @@ class PostTweetComponent extends React.Component {
         return(
             <div id='postTweet' className='postTweet' style={{display: this.props.display}}>
                 <div className='postTweetContainer'>
-                    <textarea rows={10} cols={50}  id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.value} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
-                    <button id="sendTweetButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
+                    {this.messageCount()}
+                    <textarea rows={10} cols={50} maxlength="280" id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.value} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
+                    <button id="sendTweetButton" className="sendButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
+                    {this.messageStatus()}
                 </div>
                 <div className='infoContainer'>
                 </div>
 
-                {this.testMessage()}
             </div>
         );
     }

@@ -88,12 +88,40 @@ $font-stack: serif;
     }
 
     .postTweet {
+        position: relative;
+        width: 100%;
         text-align: center;
+        margin: 0px 35px 32px;
+        display: flex;
+        flex-direction: row;
         .postTweetContainer{
-            //align-content: center;
-            margin: 0px 200px;
-            display: flex;
-            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+
+            display: block;
+
+
+            .tweetTextArea {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .charCount {
+                color: #7f7f7f;
+                position: absolute;
+                width: 25px;
+                margin-top: 115px;
+            }
+
+            textarea {
+                resize: none;
+            }
+
+            .sendButton {
+                float: right;
+                cursor: pointer;
+            }
         }
     }
 
