@@ -17,7 +17,7 @@ class PostTweetComponent extends React.Component {
             data: null,
             tweetNotSuccessful: null,
             hasError: false
-        }
+        };
 
         this.processTimeline = (obj) => {
             this.setState({
@@ -66,12 +66,6 @@ class PostTweetComponent extends React.Component {
         }
     }
 
-    messageCount() {
-        return(
-            <div className="charCount"><span>{this.state.tweet.length}</span></div>
-        )
-    }
-
     messageStatus() {
         if(this.state.data != null && this.state.data != "") {
             return(<div>Message successfully sent!</div>)
@@ -87,7 +81,7 @@ class PostTweetComponent extends React.Component {
         return(
             <div id='postTweet' className='postTweet' style={{display: this.props.display}}>
                 <div className='postTweetContainer'>
-                    {this.messageCount()}
+                    <div className="charCount"><span>{this.state.tweet.length}</span></div>
                     <textarea rows={10} cols={50} maxLength="280" id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.value} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
                     <button id="sendTweetButton" className="sendButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
                     {this.messageStatus()}
