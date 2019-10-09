@@ -32,11 +32,11 @@ $font-stack: serif;
                 cursor: pointer;
             }
         }
-
     }
 
     .userInfoContainer {
         border-bottom: 1px groove #c0c0c0;
+
         .button {
             border: 1px outset black;
             margin-bottom: 10px;
@@ -60,17 +60,17 @@ $font-stack: serif;
           font-size: 16px;
           border: 1px #000000;
           margin: 2px;
-        }
 
-        .tab:hover {
-          background-color: #bde4fc;
-          color: black;
-          cursor: pointer;
+            &:hover {
+                background-color: #bde4fc;
+                color: black;
+                cursor: pointer;
 
-        }
+            }
 
-        .tab:focus{
-            background: #B1B5FF;
+            &:focus{
+                background: #B1B5FF;
+            }
         }
 
         .tab-selected {
@@ -94,12 +94,10 @@ $font-stack: serif;
         margin: 0px 35px 32px;
         display: flex;
         flex-direction: row;
-        .postTweetContainer{
+        .postTweetContainer {
             margin-left: auto;
             margin-right: auto;
-
             display: block;
-
 
             .tweetTextArea {
                 display: block;
@@ -129,7 +127,6 @@ $font-stack: serif;
         margin: 0px 35px 32px;
         display: flex;
         flex-direction: row;
-
 
         .timelineHeader {
             text-align: center;

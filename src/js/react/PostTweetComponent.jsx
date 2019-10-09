@@ -8,8 +8,6 @@ class PostTweetComponent extends React.Component {
         this.handleTweetKeyPress = this.handleTweetKeyPress.bind(this);
         this.handlePostTweetChange = this.handlePostTweetChange.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
-        this.messageCount = this.messageCount.bind(this);
-
         this.messageStatus = this.messageStatus.bind(this);
 
         this.state = {
