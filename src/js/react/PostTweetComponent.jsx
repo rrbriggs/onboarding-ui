@@ -17,13 +17,6 @@ class PostTweetComponent extends React.Component {
             tweetNotSuccessful: null,
             hasError: false
         };
-
-        this.processTimeline = (obj) => {
-            this.setState({
-                data: obj
-            });
-
-        }
     }
 
     async sendTweet(e) {
@@ -39,7 +32,9 @@ class PostTweetComponent extends React.Component {
             const data = await postTweet(this.state.tweet);
             if (data != null) {
                 if (data.length != 0) {
-                    this.processTimeline(data);
+                    this.setState({
+                        data: data
+                    });
                 } else {
                     this.setState({
                         data: null,
