@@ -71,19 +71,11 @@ $font-stack: serif;
             &:focus{
                 background: #B1B5FF;
             }
+
         }
 
         .tab-selected {
             background-color: #bde4fc;
-            color: black;
-            outline: none;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border: 1px #000000;
-            margin: 2px;
         }
     }
 

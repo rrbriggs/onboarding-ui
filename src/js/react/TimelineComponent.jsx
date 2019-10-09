@@ -34,9 +34,9 @@ class TimelineComponent extends React.Component {
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
                 <div className='tab-bar'>
-                    <button id="homeTab" className={this.state.selectedTab === "homeTab" ? "tab-selected" : "tab"} onClick={this.handleTabClick}>Home Timeline</button>
-                    <button id="userTab" className={this.state.selectedTab === "userTab" ? "tab-selected" : "tab"} onClick={this.handleTabClick}>User Timeline</button>
-                    <button id="postTab" className={this.state.selectedTab === "postTab" ? "tab-selected" : "tab"} onClick={this.handleTabClick}>Post Tweet</button>
+                    <button id="homeTab" className={this.state.selectedTab === "homeTab" ? "tab tab-selected" : "tab"} onClick={this.handleTabClick}>Home Timeline</button>
+                    <button id="userTab" className={this.state.selectedTab === "userTab" ? "tab tab-selected" : "tab"} onClick={this.handleTabClick}>User Timeline</button>
+                    <button id="postTab" className={this.state.selectedTab === "postTab" ? "tab tab-selected" : "tab"} onClick={this.handleTabClick}>Post Tweet</button>
                 </div>
                 <div id='timelineDiv' className='timelineDiv'>
                     {this.displaySelectedTab()}
