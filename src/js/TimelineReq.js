@@ -29,7 +29,9 @@ export async function filteredHomeTimeline(key) {
 }
 
 export async function postTweet(tweet) {
-    let body = `message=${tweet}`;
+    let body = {
+        message: tweet
+    };
 
     return await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -41,6 +43,6 @@ export async function postTweet(tweet) {
             }
         };
         xhr.onerror = () => reject(false);
-        xhr.send(body);
+        xhr.send(JSON.stringify(body));
     });
 }
