@@ -60,7 +60,7 @@ class PostTweetComponent extends React.Component {
     handleTweetKeyPress(e) {
         if (e.key == "Enter" && this.state.tweet.valueOf()) {
             this.sendTweet();
-
+            document.getElementById("tweetTextArea").value = "";
         }
     }
 
