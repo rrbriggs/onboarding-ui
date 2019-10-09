@@ -7,54 +7,27 @@ class TimelineComponent extends React.Component {
     constructor(props) {
         super(props);
         this.handleTabClick = this.handleTabClick.bind(this);
+        this.displaySelectedTab = this.displaySelectedTab.bind(this);
 
         this.state = {
-            homeTimelineDisplay: '',
-            userTimelineDisplay: 'none',
-            postTweetDisplay: 'none',
-            homeTabClass: 'tab',
-            userTabClass: 'tab',
-            postTabClass: 'tab',
+            selectedTab: 'homeTab',
         }
     }
 
-    handleTabClick(selectedTab) {
-        switch(selectedTab) {
-            case 'homeTimeline':
-                this.setState({
-                    homeTimelineDisplay: '',
-                    userTimelineDisplay: 'none',
-                    postTweetDisplay: 'none',
-                    homeTabClass: 'tab-selected',
-                    userTabClass: 'tab',
-                    postTabClass: 'tab',
-                }) ;
-                break;
-            case 'userTimeline':
-                this.setState({
-                    homeTimelineDisplay: 'none',
-                    userTimelineDisplay: '',
-                    postTweetDisplay: 'none',
-                    homeTabClass: 'tab',
-                    userTabClass: 'tab-selected',
-                    postTabClass: 'tab',
-                }) ;
-                break;
-            case 'postToTimeline':
-                this.setState({
-                    homeTimelineDisplay: 'none',
-                    userTimelineDisplay: 'none',
-                    postTweetDisplay: '',
-                    homeTabClass: 'tab',
-                    userTabClass: 'tab',
-                    postTabClass: 'tab-selected',
-                }) ;
-                break;
+    displaySelectedTab() {
+        switch(this.state.selectedTab) {
+            case 'homeTab':
+                return (<HomeTimelineComponent />);
+            case 'userTab':
+                return (<UserTimelineComponent />);
+            case 'postTab':
+                return (<PostTweetComponent />);
         }
     }
 
-    componentDidMount() {
-        this.handleTabClick();
+    handleTabClick(e) {
+        this.setState({ selectedTab: e.target.id });
+        e.target.className = "tab-selected";
     }
 
     render() {         
@@ -62,14 +35,12 @@ class TimelineComponent extends React.Component {
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
                 <div className='tab-bar'>
-                    <button className={this.state.homeTabClass} onClick={() => this.handleTabClick('homeTimeline')}>Home Timeline</button>
-                    <button className={this.state.userTabClass} onClick={() => this.handleTabClick('userTimeline')}>User Timeline</button>
-                    <button className={this.state.postTabClass} onClick={() => this.handleTabClick('postToTimeline')}>Post Tweet</button>
+                    <button id="homeTab" className="tab" onClick={this.handleTabClick}>Home Timeline</button>
+                    <button id="userTab" className="tab" onClick={this.handleTabClick}>User Timeline</button>
+                    <button id="postTab" className="tab" onClick={this.handleTabClick}>Post Tweet</button>
                 </div>
                 <div id='timelineDiv' className='timelineDiv'>
-                    <HomeTimelineComponent display={this.state.homeTimelineDisplay}/>
-                    <UserTimelineComponent display={this.state.userTimelineDisplay}/>
-                    <PostTweetComponent display={this.state.postTweetDisplay}/>
+                    {this.displaySelectedTab()}
                 </div> 
             </div>
         );
