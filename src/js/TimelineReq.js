@@ -36,7 +36,7 @@ export async function postTweet(tweet) {
     return await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", `http://localhost:8080/api/1.0/twitter/tweet`, true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = () => {
             if (xhr.status == 200 && xhr.readyState == 4) {
                 resolve(JSON.parse(xhr.responseText));
