@@ -9,9 +9,6 @@ class TimelineComponent extends React.Component {
         this.handleTabClick = this.handleTabClick.bind(this);
         this.displaySelectedTab = this.displaySelectedTab.bind(this);
 
-        this.tabClassName = "tab";
-        this.selectedTabClassName = this.tabClassName + " tab-selected";
-
         this.state = {
             selectedTab: 'homeTab',
         }
@@ -37,9 +34,9 @@ class TimelineComponent extends React.Component {
             <div className = 'master'>
                 <div className='title'>Lab for Briggs</div>
                 <div className='tab-bar'>
-                    <button id="homeTab" className={this.state.selectedTab === "homeTab" ? this.selectedTabClassName : this.tabClassName} onClick={this.handleTabClick}>Home Timeline</button>
-                    <button id="userTab" className={this.state.selectedTab === "userTab" ? this.selectedTabClassName : this.tabClassName} onClick={this.handleTabClick}>User Timeline</button>
-                    <button id="postTab" className={this.state.selectedTab === "postTab" ? this.selectedTabClassName : this.tabClassName} onClick={this.handleTabClick}>Post Tweet</button>
+                    <button id="homeTab" className={"tab " + (this.state.selectedTab === "homeTab" ? "tab-selected" : "")} onClick={this.handleTabClick}>Home Timeline</button>
+                    <button id="userTab" className={"tab " + (this.state.selectedTab === "userTab" ? "tab-selected" : "")} onClick={this.handleTabClick}>User Timeline</button>
+                    <button id="postTab" className={"tab " +  (this.state.selectedTab === "postTab" ? "tab-selected" : "")} onClick={this.handleTabClick}>Post Tweet</button>
                 </div>
                 <div id='timelineDiv' className='timelineDiv'>
                     {this.displaySelectedTab()}
