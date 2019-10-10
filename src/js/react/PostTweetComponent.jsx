@@ -8,7 +8,6 @@ class PostTweetComponent extends React.Component {
         this.handleTweetKeyPress = this.handleTweetKeyPress.bind(this);
         this.handlePostTweetChange = this.handlePostTweetChange.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
-        // this.messageStatus = this.messageStatus.bind(this);
         this.maxCharCount = 280;
         this.msgStatus = "";
 
@@ -30,7 +29,7 @@ class PostTweetComponent extends React.Component {
             const data = await postTweet(this.state.tweet);
             if (data != null) {
                 if (data.length != 0) {
-                    this.msgStatus = <span>Message successfully sent!</span>;
+                    this.msgStatus = <span className="messageSuccess">Message successfully sent!</span>;
                     this.setState({
                         data: data,
                         tweet: ""
@@ -38,7 +37,7 @@ class PostTweetComponent extends React.Component {
                 }
             }
         } catch {
-            this.msgStatus = <span>Message not sent.</span>;
+            this.msgStatus = <span className="messageFail">Message not sent.</span>;
             this.setState({
                 data: null,
                 tweetNotSuccessful: true,
@@ -55,16 +54,6 @@ class PostTweetComponent extends React.Component {
             this.sendTweet();
         }
     }
-
-    // messageStatus() {
-    //     if(this.state.data != null) {
-    //         return(<div>Message successfully sent!</div>)
-    //     }
-    //
-    //     if(this.state.tweetNotSuccessful == true) {
-    //         return(<div>Message not sent.</div>)
-    //     }
-    // }
 
     render() {
         return(
