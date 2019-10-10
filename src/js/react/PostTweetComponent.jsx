@@ -8,8 +8,10 @@ class PostTweetComponent extends React.Component {
         this.handleTweetKeyPress = this.handleTweetKeyPress.bind(this);
         this.handlePostTweetChange = this.handlePostTweetChange.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
-        this.messageStatus = this.messageStatus.bind(this);
+        // this.messageStatus = this.messageStatus.bind(this);
         this.maxCharCount = 280;
+        this.msgStatus = "";
+
 
         this.state = {
             tweet: "",
@@ -28,17 +30,15 @@ class PostTweetComponent extends React.Component {
             const data = await postTweet(this.state.tweet);
             if (data != null) {
                 if (data.length != 0) {
+                    this.msgStatus = <span>Message successfully sent!</span>;
                     this.setState({
                         data: data,
                         tweet: ""
                     });
-                } else {
-                    this.setState({
-                        data: null,
-                    });
                 }
             }
         } catch {
+            this.msgStatus = <span>Message not sent.</span>;
             this.setState({
                 data: null,
                 tweetNotSuccessful: true,
@@ -56,15 +56,15 @@ class PostTweetComponent extends React.Component {
         }
     }
 
-    messageStatus() {
-        if(this.state.data != null) {
-            return(<div>Message successfully sent!</div>)
-        }
-
-        if(this.state.tweetNotSuccessful == true) {
-            return(<div>Message not sent.</div>)
-        }
-    }
+    // messageStatus() {
+    //     if(this.state.data != null) {
+    //         return(<div>Message successfully sent!</div>)
+    //     }
+    //
+    //     if(this.state.tweetNotSuccessful == true) {
+    //         return(<div>Message not sent.</div>)
+    //     }
+    // }
 
     render() {
         return(
@@ -73,11 +73,8 @@ class PostTweetComponent extends React.Component {
                     <div className="charCount"><span>{this.maxCharCount-this.state.tweet.length}</span></div>
                     <textarea rows={10} cols={50} maxLength={this.maxCharCount} id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.tweet} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
                     <button id="sendTweetButton" className="sendButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
-                    {this.messageStatus()}
+                    {this.msgStatus}
                 </div>
-                <div className='infoContainer'>
-                </div>
-
             </div>
         );
     }

@@ -71,7 +71,6 @@ $font-stack: serif;
             &:focus{
                 background: #B1B5FF;
             }
-
         }
 
         .tab-selected {
@@ -112,6 +111,14 @@ $font-stack: serif;
                 float: right;
                 cursor: pointer;
                 clear: right;
+            }
+
+            .messageSuccess {
+                color: green;
+            }
+
+            .messageFail {
+                color: red;
             }
         }
     }
