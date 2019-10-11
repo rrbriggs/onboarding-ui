@@ -61,7 +61,16 @@ class HomeTimelineComponent extends React.Component {
                     if(post != "") {
                         let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
                         count++;
-                        return <PostFactoryComponent key={post.postID + 1} postID={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity}/>
+                        return <PostFactoryComponent
+                                    key={post.postID + 1}
+                                    postID={post.postID}
+                                    photoURL={post.socialUser.profileImageUrl}
+                                    screenName={post.socialUser.name}
+                                    userHandle={post.socialUser.twitterHandle}
+                                    date={post.createdAt}
+                                    statusMessage={post.message}
+                                    postStyle={postOddity}
+                                />
                     }
                 })
             );
@@ -116,11 +125,24 @@ class HomeTimelineComponent extends React.Component {
 
     render() {
         return(
-            <div id='homeTimeline' className='homeTimeline' style={{display: this.props.display}}>
+            <div id='homeTimeline' className='homeTimeline'>
                 <div className='infoContainer'>
                     <div className='infoInner'>
-                        <input id="filterHome" type="text" placeholder="Enter filter query." value={this.state.filter} onChange={this.handleHomeFilterChange} onKeyPress={this.handleHomeFilterKeyPress}></input>
-                        <button id="filterHomeButton" type="button" onClick={this.getFilteredResults} disabled={(this.state.filter)? false : true}>Filter</button>
+                        <input id="filterHome"
+                               type="text"
+                               placeholder="Enter filter query."
+                               value={this.state.filter}
+                               onChange={this.handleHomeFilterChange}
+                               onKeyPress={this.handleHomeFilterKeyPress}
+                        />
+
+                        <button id="filterHomeButton"
+                                type="button"
+                                onClick={this.getFilteredResults}
+                                disabled={(this.state.filter)? false : true}>
+                                    Filter
+                        </button>
+
                     </div>
                     <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
 

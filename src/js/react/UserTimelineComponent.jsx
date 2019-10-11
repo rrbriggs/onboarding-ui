@@ -49,7 +49,7 @@ class UserTimelineComponent extends React.Component {
             return (
                 this.state.userData.map((post) => {
                     if(post != "") {
-                        let postOddity = ((userTimeCount % 2 == 0) ? 'evenUserPost' : 'oddUserPost')
+                        let postOddity = ((userTimeCount % 2 == 0) ? 'evenUserPost' : 'oddUserPost');
                         userTimeCount++;
                         return <PostFactoryComponent key={post.postID + 1} postID={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity} userTimeline={true}/>
                     }
@@ -61,8 +61,8 @@ class UserTimelineComponent extends React.Component {
     }
 
     render() {
-        return(
-            <div id='userTimeline' className='userTimeline' style={{display: this.props.display}}>
+        return( // todo: fix this
+            <div id='userTimeline' className='userTimeline'>
                 <div className='userInfoContainer'>
                     <button id="getUserTimelineButton" onClick={this.userButtonClick} className='button'>Refresh</button>
                 </div>
