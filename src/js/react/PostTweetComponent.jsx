@@ -9,15 +9,13 @@ class PostTweetComponent extends React.Component {
         this.handlePostTweetChange = this.handlePostTweetChange.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
         this.maxCharCount = 280;
-        this.msgStatus = "";
-
+        this.msgSuccess = null;
 
         this.state = {
             tweet: "",
             data: null,
-            tweetNotSuccessful: null,
-            hasError: false
         };
+
     }
 
     async sendTweet() {
@@ -29,18 +27,17 @@ class PostTweetComponent extends React.Component {
             const data = await postTweet(this.state.tweet);
             if (data != null) {
                 if (data.length != 0) {
-                    this.msgStatus = <span className="messageSuccess">Message successfully sent!</span>;
+                    this.msgSuccess = true;
                     this.setState({
                         data: data,
-                        tweet: ""
+                        tweet: "",
                     });
                 }
             }
         } catch {
-            this.msgStatus = <span className="messageFail">Message not sent.</span>;
+            this.msgSuccess = false;
             this.setState({
                 data: null,
-                tweetNotSuccessful: true,
             });
         }
     }
@@ -60,9 +57,33 @@ class PostTweetComponent extends React.Component {
             <div id='postTweet' className='postTweet' style={{display: this.props.display}}>
                 <div className='postTweetContainer'>
                     <div className="charCount"><span>{this.maxCharCount-this.state.tweet.length}</span></div>
-                    <textarea rows={10} cols={50} maxLength={this.maxCharCount} id="tweetTextArea" className="tweetTextArea" type="textarea" placeholder="Enter your tweet here." value={this.state.tweet} onChange={this.handlePostTweetChange} onKeyPress={this.handleTweetKeyPress}></textarea>
-                    <button id="sendTweetButton" className="sendButton" type="button" onClick={this.sendTweet} disabled={(this.state.tweet)? false : true}>Send Tweet</button>
-                    {this.msgStatus}
+                    <textarea
+                        rows={10}
+                        cols={50}
+                        maxLength={this.maxCharCount}
+                        id="tweetTextArea"
+                        className="tweetTextArea"
+                        type="textarea"
+                        placeholder="Enter your tweet here."
+                        value={this.state.tweet}
+                        onChange={this.handlePostTweetChange}
+                        onKeyPress={this.handleTweetKeyPress} />
+
+                    <button id="sendTweetButton"
+                            className="sendButton"
+                            type="button"
+                            onClick={this.sendTweet}
+                            disabled={(this.state.tweet)? false : true}>
+                            Send Tweet
+                    </button>
+
+                    {
+                        this.msgSuccess !== null ?
+                        <span
+                            className={this.msgSuccess === true ? "messageSuccess" : "messageFail"}>
+                                {this.msgSuccess === true ? "Message successfully sent!" : "Message not sent."}
+                        </span> : ""
+                    }
                 </div>
             </div>
         );
