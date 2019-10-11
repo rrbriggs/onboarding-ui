@@ -37,8 +37,13 @@ class HomeTimelineComponent extends React.Component {
     async requestTimeline() {
         try {
             const data = await timelineReq();
-            if (data != null) {
+            if (data !== false) {
                 this.processTimeline(data);
+            } else {
+                this.prevData = "";
+                this.setState({
+                    data: null
+                });
             }
 
         } catch {
@@ -104,7 +109,7 @@ class HomeTimelineComponent extends React.Component {
 
         try {
             const data = await filteredHomeTimeline(this.state.filter.toLowerCase());
-            if (data != null) {
+            if (data !== false) {
                 if (data.length != 0) {
                     this.processTimeline(data);
                 } else {
@@ -114,6 +119,11 @@ class HomeTimelineComponent extends React.Component {
                         filterNoData: true,
                     });
                 }
+            } else {
+                this.prevData = "";
+                this.setState({
+                    data: null,
+                });
             }
         } catch {
             this.prevData = "";

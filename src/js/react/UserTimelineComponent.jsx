@@ -24,13 +24,19 @@ class UserTimelineComponent extends React.Component {
         try {
             const userData = await userTimelineReq();
 
-            if (userData != this.prevUserData) {
-                this.prevUserData = userData;
+            if (userData !== false) {
+                if (userData != this.prevUserData) {
+                    this.prevUserData = userData;
+                    this.setState({
+                        userData: userData
+                    });
+                }
+            } else {
+                this.prevUserData = "";
                 this.setState({
-                    userData: userData
+                    userData: null
                 });
             }
-
         } catch {
             this.prevUserData = "";
             this.setState({

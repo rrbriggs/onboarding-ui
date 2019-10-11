@@ -1,48 +1,55 @@
 export async function timelineReq() {
-    return await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:8080/api/1.0/twitter/timeline");
-        xhr.onload = () => resolve(JSON.parse(xhr.response));
-        xhr.onerror = () => reject();
-        xhr.send();
-    });
+    try {
+        const response = await fetch("http://localhost:8080/api/1.0/twitter/timeline", {
+            method: 'GET',
+        });
+
+        return await response.json();
+    } catch {
+        return false;
+    }
 }
 
 export async function userTimelineReq() {
-    return await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:8080/api/1.0/twitter/userTimeline");
-        xhr.onload = () => resolve(JSON.parse(xhr.response));
-        xhr.onerror = () => reject();
-        xhr.send();
-    });
+    try {
+        const response = await fetch("http://localhost:8080/api/1.0/twitter/userTimeline", {
+            method: 'GET',
+        });
+
+        return await response.json();
+    } catch {
+        return false;
+    }
 }
 
 export async function filteredHomeTimeline(key) {
-    return await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", `http://localhost:8080/api/1.0/twitter/timeline/filter?filterKey=${key}`);
-        xhr.onload = () => resolve(JSON.parse(xhr.response));
-        xhr.onerror = () => reject(false);
-        xhr.send();
-    });
+    try {
+        const response = await fetch(`http://localhost:8080/api/1.0/twitter/timeline/filter?filterKey=${key}`, {
+            method: 'GET',
+        });
+
+        return await response.json();
+    } catch {
+        return false;
+    }
 }
 
 export async function postTweet(tweet) {
-    let body = {
-        message: tweet
-    };
-
-    return await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", `http://localhost:8080/api/1.0/twitter/tweet`, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = () => {
-            if (xhr.status == 200 && xhr.readyState == 4) {
-                resolve(JSON.parse(xhr.responseText));
-            }
+    try {
+        let bodyMsg = {
+            "message": tweet
         };
-        xhr.onerror = () => reject(false);
-        xhr.send(JSON.stringify(body));
-    });
+        const response = await fetch("http://localhost:8080/api/1.0/twitter/tweet", {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: bodyMsg // body data type must match "Content-Type" header
+        });
+
+        return await response.json();
+    } catch {
+        return false;
+    }
 }

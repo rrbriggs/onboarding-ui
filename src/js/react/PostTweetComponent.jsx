@@ -25,7 +25,7 @@ class PostTweetComponent extends React.Component {
 
         try {
             const data = await postTweet(this.state.tweet);
-            if (data != null) {
+            if (data !== false) {
                 if (data.length != 0) {
                     this.msgSuccess = true;
                     this.setState({
@@ -33,6 +33,11 @@ class PostTweetComponent extends React.Component {
                         tweet: "",
                     });
                 }
+            } else {
+                this.msgSuccess = false;
+                this.setState({
+                    data: null,
+                });
             }
         } catch {
             this.msgSuccess = false;
@@ -63,7 +68,6 @@ class PostTweetComponent extends React.Component {
                         maxLength={this.maxCharCount}
                         id="tweetTextArea"
                         className="tweetTextArea"
-                        type="textarea"
                         placeholder="Enter your tweet here."
                         value={this.state.tweet}
                         onChange={this.handlePostTweetChange}
