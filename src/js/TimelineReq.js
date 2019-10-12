@@ -35,15 +35,16 @@ export async function filteredHomeTimeline(key) {
 }
 
 export async function postTweet(tweet) {
+    let body = {"message": tweet};
     return await new Promise((resolve, reject) => {
        fetch("http://localhost:8080/api/1.0/twitter/tweet", {
            method: 'POST',
-           body: JSON.stringify({"message": tweet}),
+           body: JSON.stringify(body),
            headers: {
                'Content-Type': 'application/json'
            },
        }).then(response => {
            resolve(response)
-       }).catch(error => reject(false))
+       }).catch(() => reject(false))
     });
 }
