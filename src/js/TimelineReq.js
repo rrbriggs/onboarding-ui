@@ -35,21 +35,15 @@ export async function filteredHomeTimeline(key) {
 }
 
 export async function postTweet(tweet) {
-    try {
-        let bodyMsg = {
-            "message": tweet
-        };
-        const response = await fetch("http://localhost:8080/api/1.0/twitter/tweet", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: bodyMsg // body data type must match "Content-Type" header
-        });
-
-        return await response.json();
-    } catch {
-        return false;
-    }
+    return await new Promise((resolve, reject) => {
+       fetch("http://localhost:8080/api/1.0/twitter/tweet", {
+           method: 'POST',
+           body: JSON.stringify({"message": tweet}),
+           headers: {
+               'Content-Type': 'application/json'
+           },
+       }).then(response => {
+           resolve(response)
+       }).catch(error => reject(false))
+    });
 }
