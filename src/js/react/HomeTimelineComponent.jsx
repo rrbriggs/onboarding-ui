@@ -14,11 +14,12 @@ class HomeTimelineComponent extends React.Component {
         this.prevData = null;
 
         this.state = {
+            loading: true,
             filter: "",
-            data: null,
+            data: "",
             filterNoData: null,
             hasError: false
-        }
+        };
 
         this.processTimeline = (obj) => {
             if (obj != this.prevData) {
@@ -39,16 +40,19 @@ class HomeTimelineComponent extends React.Component {
             const data = await timelineReq();
             if (data !== false) {
                 this.processTimeline(data);
+                this.setState({loading: false});
             } else {
                 this.prevData = "";
                 this.setState({
-                    data: null
+                    data: null,
+                    loading: false
                 });
             }
 
         } catch {
             this.prevData = "";
             this.setState({
+                loading: false,
                 data: null
             });
         }
@@ -60,11 +64,11 @@ class HomeTimelineComponent extends React.Component {
 
     homeTimeline() {
         let count = 0;
-        if (this.state.data != null) {
+        if (this.state.data != null && this.state.loading === false) {
             return (
                 this.state.data.map((post) => {
                     if(post != "") {
-                        let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock')
+                        let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock');
                         count++;
                         return <PostFactoryComponent
                                     key={post.postID + 1}
@@ -79,7 +83,7 @@ class HomeTimelineComponent extends React.Component {
                     }
                 })
             );
-        } else {
+        } else if (this.state.loading === false) {
             if (this.state.filterNoData == true) {
                 return <div className='error'>No data matching your filter query was found.</div>
             } else {
