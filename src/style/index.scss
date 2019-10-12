@@ -25,17 +25,18 @@ $font-stack: serif;
 
         .infoInner {
             float: right;
+        }
 
-            .button {
-                border: 1px outset black;
-                margin-bottom: 10px;
-                cursor: pointer;
-            }
+        .button {
+            border: 1px outset black;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
     }
 
     .userInfoContainer {
         border-bottom: 1px groove #c0c0c0;
+        padding-bottom: 10px;
 
         .button {
             border: 1px outset black;
