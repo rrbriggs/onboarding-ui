@@ -21,15 +21,11 @@
   },
   "homepage": "https://github.com/rrbriggs/onboarding-ui#readme",
   "jest": {
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.js"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/jspm_packages"
-    ],
-    "unmockedModulePathPatterns": [
-      "./node_modules/react"
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "!node_modules/react-runtime"
     ]
   },
   "devDependencies": {
@@ -48,10 +44,7 @@
     "react-scripts": "^3.1.1",
     "sass": "^1.21.0",
     "sass-loader": "^7.3.1",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8",
-    "webpack-dev-server": "^3.7.1"
+    "style-loader": "^0.23.1"
   },
   "dependencies": {
     "@types/jest": "^24.0.18"
