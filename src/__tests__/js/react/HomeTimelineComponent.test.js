@@ -15,7 +15,7 @@ describe('test HomeTimelineComponent', () => {
     const homeTimelineComponent = shallow(< HomeTimelineComponent />);
 
     it('checks for error case', () => {
-        expect(homeTimelineComponent.contains('No data currently available.')).toBeTruthy();
+        expect(homeTimelineComponent.instance().homeTimeline().contains('No data currently available.')).toBeTruthy();
     });
 
     it('getTimelineButton click executes function that calls timelineReq with parseDataJson as callback', () => {
@@ -28,7 +28,7 @@ describe('test HomeTimelineComponent', () => {
     });
 
     it('getHomeTimelineButton renders data from PostFactoryComponent', () => {
-        const data = {
+        const fakeData = {
             key: "1",
             postID: "1234",
             date: Date.now().valueOf(),
@@ -39,12 +39,14 @@ describe('test HomeTimelineComponent', () => {
                 screenName: "screen name",
                 handle: "handle"
             }
-        }
+        };
 
         timelineReq.mockImplementation(() => {
             homeTimelineComponent.instance()
-                    .parseDataJson(JSON.stringify([data, data, data, data]));
+                    .processTimeline([fakeData, fakeData, fakeData, fakeData]);
         });
+
+        homeTimelineComponent.setState({data: fakeData});
 
         homeTimelineComponent
             .find('#getTimelineButton')

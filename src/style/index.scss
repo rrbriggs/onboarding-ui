@@ -25,19 +25,8 @@ $font-stack: serif;
 
         .infoInner {
             float: right;
-
-            .button {
-                border: 1px outset black;
-                margin-bottom: 10px;
-                cursor: pointer;
-            }
         }
 
-    }
-
-    .userInfoContainer {
-        border-bottom: 1px groove #c0c0c0;
-        text-align: right;
         .button {
             border: 1px outset black;
             margin-bottom: 10px;
@@ -45,8 +34,98 @@ $font-stack: serif;
         }
     }
 
+    .userInfoContainer {
+        border-bottom: 1px groove #c0c0c0;
+        padding-bottom: 10px;
+
+        .button {
+            border: 1px outset black;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .tab-bar {
+        text-align: center;
+        width: 100%;
+        margin: 10px;
+
+        .tab {
+          background-color: #f2f4ff;
+          color: black;
+          outline: none;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          border: 1px #000000;
+          margin: 2px;
+
+            &:hover {
+                background-color: #bde4fc;
+                color: black;
+                cursor: pointer;
+
+            }
+
+            &:focus{
+                background: #B1B5FF;
+            }
+        }
+
+        .tab-selected {
+            background-color: #bde4fc;
+        }
+    }
+
+    .postTweet {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin: 0px 35px 32px;
+        display: flex;
+        flex-direction: row;
+
+        .postTweetContainer {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+
+            .tweetTextArea {
+                display: block;
+                margin: 25px auto 0;
+            }
+
+            .charCount {
+                color: #7f7f7f;
+                position: absolute;
+                width: 600px;
+                margin-top: 140px;
+            }
+
+            textarea {
+                resize: none;
+            }
+
+            .sendButton {
+                float: right;
+                cursor: pointer;
+                clear: right;
+            }
+
+            .messageSuccess {
+                color: green;
+            }
+
+            .messageFail {
+                color: red;
+            }
+        }
+    }
+
     .timelineDiv {
-        margin: 0px 25px 32px;
+        margin: 0px 35px 32px;
         display: flex;
         flex-direction: row;
 
@@ -57,15 +136,12 @@ $font-stack: serif;
         }
 
         .homeTimeline {
-            width: 55%;
             float: left;
-            margin: 0px 10px 0px 0px;
+            width: 100%;
         }
 
         .userTimeline {
-            width: 45%;
-            float: right;
-            margin: 0px 0px 0px 10px;
+            width: 100%;
         }
 
         .evenPostBlock {

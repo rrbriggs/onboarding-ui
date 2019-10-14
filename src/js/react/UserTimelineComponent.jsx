@@ -1,6 +1,7 @@
 import React from 'react';
 import {userTimelineReq} from '../TimelineReq';
 import PostFactoryComponent from './PostFactoryComponent';
+import {displayNameOfNode} from "enzyme/src/Utils";
 
 class UserTimelineComponent extends React.Component {
     constructor(props) {
@@ -11,7 +12,8 @@ class UserTimelineComponent extends React.Component {
 
         this.state = { 
             userData: [],
-            hasError: false
+            hasError: false,
+            errorMsg: null
         }
     }
 
@@ -20,20 +22,21 @@ class UserTimelineComponent extends React.Component {
     }
 
     async requestUserTimeline() {
-        try {
-            const userData = await userTimelineReq();
 
+        const userData = await userTimelineReq();
+
+        if (!(userData instanceof Error)) {
             if (userData != this.prevUserData) {
                 this.prevUserData = userData;
                 this.setState({
                     userData: userData
                 });
             }
-
-        } catch {
+        } else {
             this.prevUserData = "";
             this.setState({
-                userData: null
+                userData: null,
+                errorMsg: userData.message
             });
         }
     }
@@ -43,27 +46,31 @@ class UserTimelineComponent extends React.Component {
     }
 
     userTimeline() {
-        let userTimeCount = 0;
-        if (this.state.userData != null) {
-            return (
-                this.state.userData.map((post) => {
-                    if(post != "") {
-                        let postOddity = ((userTimeCount % 2 == 0) ? 'evenUserPost' : 'oddUserPost')
-                        userTimeCount++;
-                        return <PostFactoryComponent key={post.postID + 1} postID={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity} userTimeline={true}/>
-                    }
-                })
-            );
-        } else {
-            return <div className='error'>No tweets are available, post a tweet!</div>
+        try {
+            let userTimeCount = 0;
+            if (this.state.userData != null) {
+                return (
+                    this.state.userData.map((post) => {
+                        if(post != "") {
+                            let postOddity = ((userTimeCount % 2 == 0) ? 'evenUserPost' : 'oddUserPost');
+                            userTimeCount++;
+                            return <PostFactoryComponent key={post.postID + 1} postID={post.postID} photoURL={post.socialUser.profileImageUrl} screenName={post.socialUser.name} userHandle={post.socialUser.twitterHandle} date={post.createdAt} statusMessage={post.message} postStyle={postOddity} userTimeline={true}/>
+                        }
+                    })
+                );
+            } else {
+                return <div className='error'>{this.state.errorMsg}</div>
+            }
+        } catch {
+            return <div className='error'>{this.state.errorMsg}</div>
         }
+
     }
 
     render() {
         return(
-            <div id='userTimeline' className='userTimeline'> 
+            <div id='userTimeline' className='userTimeline'>
                 <div className='userInfoContainer'>
-                    <h2 className="timelineHeader"> User Timeline </h2>
                     <button id="getUserTimelineButton" onClick={this.userButtonClick} className='button'>Refresh</button>
                 </div>
                 {this.userTimeline()} 
