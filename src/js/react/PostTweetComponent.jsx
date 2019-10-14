@@ -15,7 +15,6 @@ class PostTweetComponent extends React.Component {
             tweet: "",
             data: null,
         };
-
     }
 
     async sendTweet() {
