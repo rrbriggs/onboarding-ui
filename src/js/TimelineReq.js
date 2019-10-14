@@ -3,10 +3,9 @@ export async function timelineReq() {
         const response = await fetch("http://localhost:8080/api/1.0/twitter/timeline", {
             method: 'GET',
         });
-        let resp = await response;
         return await response.json();
     } catch {
-        throw new Error("Having an issue getting the Home Timeline");
+        return new Error("No data currently available.");
     }
 }
 
@@ -18,7 +17,7 @@ export async function userTimelineReq() {
 
         return await response.json();
     } catch {
-        throw new Error("Having an issue getting the User Timeline.");
+        return new Error("No tweets are available, post a tweet!");
     }
 }
 
@@ -27,10 +26,14 @@ export async function filteredHomeTimeline(key) {
         const response = await fetch(`http://localhost:8080/api/1.0/twitter/timeline/filter?filterKey=${key}`, {
             method: 'GET',
         });
-
-        return await response.json();
+        let filterResp = await response.json();
+        if (filterResp !== []) {
+            return await response.json();
+        } else {
+            return new Error("No data matching your filter query was found.");
+        }
     } catch {
-        throw new Error("Having an issue getting the Filtered Timeline.");
+        return new Error("No data matching your filter query was found.");
     }
 }
 

@@ -12,7 +12,8 @@ class UserTimelineComponent extends React.Component {
 
         this.state = { 
             userData: [],
-            hasError: false
+            hasError: false,
+            errorMsg: null
         }
     }
 
@@ -21,26 +22,21 @@ class UserTimelineComponent extends React.Component {
     }
 
     async requestUserTimeline() {
-        try {
-            const userData = await userTimelineReq();
 
-            if (userData !== false) {
-                if (userData != this.prevUserData) {
-                    this.prevUserData = userData;
-                    this.setState({
-                        userData: userData
-                    });
-                }
-            } else {
-                this.prevUserData = "";
+        const userData = await userTimelineReq();
+
+        if (!(userData instanceof Error)) {
+            if (userData != this.prevUserData) {
+                this.prevUserData = userData;
                 this.setState({
-                    userData: null
+                    userData: userData
                 });
             }
-        } catch {
+        } else {
             this.prevUserData = "";
             this.setState({
-                userData: null
+                userData: null,
+                errorMsg: userData.message
             });
         }
     }
@@ -63,10 +59,10 @@ class UserTimelineComponent extends React.Component {
                     })
                 );
             } else {
-                return <div className='error'>No tweets are available, post a tweet!</div>
+                return <div className='error'>{this.state.errorMsg}</div>
             }
         } catch {
-            return <div className='error'>No tweets are available, post a tweet!</div>
+            return <div className='error'>{this.state.errorMsg}</div>
         }
 
     }

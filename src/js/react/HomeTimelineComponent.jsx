@@ -18,7 +18,7 @@ class HomeTimelineComponent extends React.Component {
             filter: "",
             data: {},
             filterNoData: null,
-            hasError: false
+            errorMsg: null,
         };
 
         this.processTimeline = (obj) => {
@@ -36,24 +36,16 @@ class HomeTimelineComponent extends React.Component {
     }
 
     async requestTimeline() {
-        try {
-            const data = await timelineReq();
-            if (data !== false) {
-                this.processTimeline(data);
-                this.setState({loading: false});
-            } else {
-                this.prevData = "";
-                this.setState({
-                    data: null,
-                    loading: false
-                });
-            }
-
-        } catch {
+        const data = await timelineReq();
+        if (!(data instanceof Error)) {
+            this.processTimeline(data);
+            this.setState({loading: false});
+        } else {
             this.prevData = "";
             this.setState({
+                data: null,
                 loading: false,
-                data: null
+                errorMsg: data.message
             });
         }
     }
@@ -85,14 +77,12 @@ class HomeTimelineComponent extends React.Component {
                     })
                 );
             } else {
-                if (this.state.filterNoData == true) {
-                    return <div className='error'>No data matching your filter query was found.</div>
-                } else {
-                    return <div className='error'>No data currently available.</div>
-                }
+                return <div className='error'>{this.state.errorMsg}</div>
             }
         } catch {
-
+            if (this.state.loading === false) {
+                    return <div className='error'>{this.state.errorMsg}</div>
+            }
         }
     }
 
@@ -106,37 +96,28 @@ class HomeTimelineComponent extends React.Component {
         }
     }
 
-    async getFilteredResults(e) {
-        if(e) {
-            e.preventDefault();
-        }
-
+    async getFilteredResults() {
         this.setState({
             data: null,
         });
 
         try {
             const data = await filteredHomeTimeline(this.state.filter.toLowerCase());
-            if (data !== false) {
-                if (data.length != 0) {
-                    this.processTimeline(data);
-                } else {
-                    this.prevData = "";
-                    this.setState({
-                        data: null,
-                        filterNoData: true,
-                    });
-                }
+            if (!(data instanceof Error)) {
+                this.processTimeline(data);
             } else {
                 this.prevData = "";
                 this.setState({
+                    loading: false,
                     data: null,
+                    errorMsg: data.message
                 });
             }
         } catch {
             this.prevData = "";
             this.setState({
                 data: null,
+                errorMsg: data.message
             });
         }
     }
