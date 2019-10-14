@@ -11,9 +11,8 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, "./dist"),
         publicPath: "/src/js",
-        watchContentBase: true, // live reload
+        watchContentBase: true,
         hot: true,
-        liveReload: true,
         compress: true,
         port: 9000
     },
