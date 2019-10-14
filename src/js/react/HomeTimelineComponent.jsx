@@ -16,7 +16,7 @@ class HomeTimelineComponent extends React.Component {
         this.state = {
             loading: true,
             filter: "",
-            data: "",
+            data: {},
             filterNoData: null,
             hasError: false
         };
@@ -63,32 +63,36 @@ class HomeTimelineComponent extends React.Component {
     }
 
     homeTimeline() {
-        let count = 0;
-        if (this.state.data != null && this.state.loading === false) {
-            return (
-                this.state.data.map((post) => {
-                    if(post != "") {
-                        let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock');
-                        count++;
-                        return <PostFactoryComponent
-                                    key={post.postID + 1}
-                                    postID={post.postID}
-                                    photoURL={post.socialUser.profileImageUrl}
-                                    screenName={post.socialUser.name}
-                                    userHandle={post.socialUser.twitterHandle}
-                                    date={post.createdAt}
-                                    statusMessage={post.message}
-                                    postStyle={postOddity}
-                                />
-                    }
-                })
-            );
-        } else if (this.state.loading === false) {
-            if (this.state.filterNoData == true) {
-                return <div className='error'>No data matching your filter query was found.</div>
+        try{
+            let count = 0;
+            if (this.state.data != null && this.state.loading === false) {
+                return (
+                    this.state.data.map((post) => {
+                        if(post != "") {
+                            let postOddity = ((count % 2 == 0) ? 'evenPostBlock' : 'oddPostBlock');
+                            count++;
+                            return <PostFactoryComponent
+                                key={post.postID + 1}
+                                postID={post.postID}
+                                photoURL={post.socialUser.profileImageUrl}
+                                screenName={post.socialUser.name}
+                                userHandle={post.socialUser.twitterHandle}
+                                date={post.createdAt}
+                                statusMessage={post.message}
+                                postStyle={postOddity}
+                            />
+                        }
+                    })
+                );
             } else {
-                return <div className='error'>No data currently available.</div>
+                if (this.state.filterNoData == true) {
+                    return <div className='error'>No data matching your filter query was found.</div>
+                } else {
+                    return <div className='error'>No data currently available.</div>
+                }
             }
+        } catch {
+
         }
     }
 
@@ -159,8 +163,6 @@ class HomeTimelineComponent extends React.Component {
 
                     </div>
                     <button id="getTimelineButton" onClick={this.homeButtonClick} className='button'>Refresh</button>
-
-
                 </div>
                 {this.homeTimeline()} 
             </div>

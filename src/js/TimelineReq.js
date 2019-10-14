@@ -3,10 +3,10 @@ export async function timelineReq() {
         const response = await fetch("http://localhost:8080/api/1.0/twitter/timeline", {
             method: 'GET',
         });
-
+        let resp = await response;
         return await response.json();
     } catch {
-        return false;
+        throw new Error("Having an issue getting the Home Timeline");
     }
 }
 
@@ -18,7 +18,7 @@ export async function userTimelineReq() {
 
         return await response.json();
     } catch {
-        return false;
+        throw new Error("Having an issue getting the User Timeline.");
     }
 }
 
@@ -30,7 +30,7 @@ export async function filteredHomeTimeline(key) {
 
         return await response.json();
     } catch {
-        return false;
+        throw new Error("Having an issue getting the Filtered Timeline.");
     }
 }
 
@@ -45,6 +45,6 @@ export async function postTweet(tweet) {
            },
        }).then(response => {
            resolve(response)
-       }).catch(() => reject(false))
+       }).catch(() => reject(new Error("Having an issue posting tweets right now.")))
     });
 }
