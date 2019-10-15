@@ -94,7 +94,7 @@ $font-stack: serif;
 
             .tweetTextArea {
                 display: block;
-                margin: 25px auto 0;
+                margin: 25px auto 5px;
             }
 
             .charCount {
@@ -112,6 +112,11 @@ $font-stack: serif;
                 float: right;
                 cursor: pointer;
                 clear: right;
+            }
+
+            .message {
+                float: right;
+                margin-right: 5px;
             }
 
             .messageSuccess {
