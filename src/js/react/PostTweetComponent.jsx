@@ -83,7 +83,7 @@ class PostTweetComponent extends React.Component {
                     {
                         this.msgSuccess !== null ?
                         <span
-                            className={this.msgSuccess === true ? "messageSuccess" : "messageFail"}>
+                            className={"message " + (this.msgSuccess === true ? "messageSuccess" : "messageFail")}>
                                 {this.msgSuccess === true ? "Message successfully sent!" : "Message not sent."}
                         </span> : ""
                     }
