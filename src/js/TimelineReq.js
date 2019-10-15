@@ -27,8 +27,8 @@ export async function filteredHomeTimeline(key) {
             method: 'GET',
         });
         let filterResp = await response.json();
-        if (filterResp !== []) {
-            return await response.json();
+        if (Object.entries(filterResp).length !== 0) {
+            return await filterResp;
         } else {
             return new Error("No data matching your filter query was found.");
         }
